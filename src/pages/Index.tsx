@@ -7,11 +7,19 @@ import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Home, MapPin, Heart, Search as SearchIcon } from 'lucide-react';
+import { useUserPreference } from '@/contexts/UserPreferenceContext';
+import UserOnboardingModal from '@/components/UserOnboardingModal';
+import LandlordForm from '@/components/LandlordForm';
 
 const Index = () => {
+  const { userType } = useUserPreference();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
+      
+      {/* First-time user modal */}
+      <UserOnboardingModal />
       
       {/* Hero Section */}
       <section className="bg-blue-50 py-16 md:py-24">
@@ -49,6 +57,8 @@ const Index = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-8">
             المناطق الشهيرة في صنعاء
           </h2>
+          {/* هذي بيانات قادمة من السيرفر من الباك ايند */}
+          {/* البيانات المتوقعة: أسماء المناطق الشهيرة، عدد الشقق في كل منطقة */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {['حدة', 'شارع تعز', 'السنينة', 'شارع الستين', 'الحصبة', 'حي الجامعة'].map((area) => (
               <Link 
@@ -62,6 +72,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      {/* Dynamic Content based on User Type */}
+      {userType === 'landlord' && <LandlordForm />}
       
       {/* How It Works */}
       <section className="py-16 bg-gray-50">
@@ -113,7 +126,11 @@ const Index = () => {
       </section>
       
       {/* Featured Listings */}
-      <FeaturedListings />
+      <div className="py-0">
+        {/* هذي بيانات قادمة من السيرفر من الباك ايند */}
+        {/* البيانات المتوقعة: بيانات الشقق المميزة، تتضمن الصور، الأسعار، المواقع، عدد الغرف، إلخ */}
+        <FeaturedListings />
+      </div>
       
       {/* CTA Section */}
       <section className="bg-primary py-16">
