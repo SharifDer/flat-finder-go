@@ -20,6 +20,7 @@ export interface Apartment {
   furnished: boolean;
   parkingIncluded: boolean;
   utilitiesIncluded: boolean;
+  type: string; // Added type property
 }
 
 export const apartments: Apartment[] = [
@@ -47,7 +48,8 @@ export const apartments: Apartment[] = [
     petFriendly: true,
     furnished: false,
     parkingIncluded: true,
-    utilitiesIncluded: false
+    utilitiesIncluded: false,
+    type: 'apartment'
   },
   {
     id: '2',
@@ -73,7 +75,8 @@ export const apartments: Apartment[] = [
     petFriendly: false,
     furnished: false,
     parkingIncluded: false,
-    utilitiesIncluded: true
+    utilitiesIncluded: true,
+    type: 'studio'
   },
   {
     id: '3',
@@ -99,7 +102,8 @@ export const apartments: Apartment[] = [
     petFriendly: true,
     furnished: false,
     parkingIncluded: true,
-    utilitiesIncluded: false
+    utilitiesIncluded: false,
+    type: 'apartment'
   },
   {
     id: '4',
@@ -125,7 +129,8 @@ export const apartments: Apartment[] = [
     petFriendly: true,
     furnished: false,
     parkingIncluded: false,
-    utilitiesIncluded: true
+    utilitiesIncluded: true,
+    type: 'apartment'
   },
   {
     id: '5',
@@ -151,7 +156,8 @@ export const apartments: Apartment[] = [
     petFriendly: true,
     furnished: false,
     parkingIncluded: true,
-    utilitiesIncluded: false
+    utilitiesIncluded: false,
+    type: 'house'
   },
   {
     id: '6',
@@ -177,7 +183,8 @@ export const apartments: Apartment[] = [
     petFriendly: false,
     furnished: true,
     parkingIncluded: false,
-    utilitiesIncluded: true
+    utilitiesIncluded: true,
+    type: 'studio'
   }
 ];
 
