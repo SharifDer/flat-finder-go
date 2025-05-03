@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, User, Heart, Plus, Menu, X, ChevronDown, Search, Building, FileText, CalendarDays } from 'lucide-react';
@@ -37,6 +36,7 @@ const Navbar = () => {
         <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
         
         {/* Top Bar - Login/Register Links */}
+        {/* 
         <div className="flex justify-end mb-4 text-sm">
           {isLoggedIn ? (
             <div className="flex items-center space-x-4 flex-row-reverse">
@@ -75,6 +75,7 @@ const Navbar = () => {
             </div>
           )}
         </div>
+        */}
         
         {/* Main Navbar */}
         <div className="flex items-center justify-between">
