@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Home, MapPin, Heart, Search } from 'lucide-react';
+import { ArrowRight, Home, MapPin, Heart, Search as SearchIcon } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -17,11 +17,11 @@ const Index = () => {
       <section className="bg-blue-50 py-16 md:py-24">
         <div className="container-custom text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            Find Your Perfect Home, <span className="text-primary">Hassle-Free</span>
+            ابحث عن منزلك المثالي في <span className="text-primary">صنعاء</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10">
-            Direct connections with property owners. No middlemen, no extra fees.
-            Just simple, location-first apartment hunting.
+            اتصال مباشر مع مالكي العقارات. بدون وسطاء، بدون رسوم إضافية.
+            مجرد بحث بسيط عن شقق بناءً على الموقع.
           </p>
           
           <SearchBar variant="hero" />
@@ -29,35 +29,55 @@ const Index = () => {
           <div className="flex flex-wrap justify-center gap-6 mt-8">
             <div className="flex items-center">
               <Home className="h-5 w-5 text-primary mr-2" />
-              <span className="text-gray-700">1000+ Listings</span>
+              <span className="text-gray-700">أكثر من 1000 إعلان</span>
             </div>
             <div className="flex items-center">
               <MapPin className="h-5 w-5 text-primary mr-2" />
-              <span className="text-gray-700">50+ Neighborhoods</span>
+              <span className="text-gray-700">أكثر من 50 حي سكني</span>
             </div>
             <div className="flex items-center">
               <Heart className="h-5 w-5 text-primary mr-2" />
-              <span className="text-gray-700">Direct Owner Contact</span>
+              <span className="text-gray-700">اتصال مباشر بالمالك</span>
             </div>
           </div>
         </div>
       </section>
       
+      {/* Neighborhoods Section */}
+      <section className="py-12 bg-white">
+        <div className="container-custom">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-8">
+            المناطق الشهيرة في صنعاء
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {['حدة', 'شارع تعز', 'السنينة', 'شارع الستين', 'الحصبة', 'حي الجامعة'].map((area) => (
+              <Link 
+                key={area} 
+                to={`/listings?location=${area}`}
+                className="bg-blue-50 hover:bg-blue-100 transition-colors p-4 rounded-lg text-center"
+              >
+                <div className="font-medium text-primary">{area}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+      
       {/* How It Works */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="container-custom">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12">
-            How FindMyFlat Works
+            كيف يعمل FindMyFlat
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="bg-blue-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
-                <Search className="h-8 w-8 text-primary" />
+                <SearchIcon className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Search Properties</h3>
+              <h3 className="text-xl font-semibold mb-3">ابحث عن العقارات</h3>
               <p className="text-gray-600">
-                Easily find apartments based on your preferred location, budget, and amenities.
+                ابحث بسهولة عن الشقق بناءً على موقعك المفضل، والميزانية، والمرافق.
               </p>
             </div>
             
@@ -65,9 +85,9 @@ const Index = () => {
               <div className="bg-blue-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
                 <Heart className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Connect Directly</h3>
+              <h3 className="text-xl font-semibold mb-3">تواصل مباشرةً</h3>
               <p className="text-gray-600">
-                Communicate with property owners directly, no middlemen or additional fees.
+                تواصل مع مالكي العقارات مباشرةً، بدون وسطاء أو رسوم إضافية.
               </p>
             </div>
             
@@ -75,9 +95,9 @@ const Index = () => {
               <div className="bg-blue-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
                 <Home className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Move In</h3>
+              <h3 className="text-xl font-semibold mb-3">انتقل إلى منزلك الجديد</h3>
               <p className="text-gray-600">
-                Schedule viewings, finalize details, and enjoy your new home without the extra hassle.
+                جدولة المعاينات، وإنهاء التفاصيل، والاستمتاع بمنزلك الجديد بدون متاعب إضافية.
               </p>
             </div>
           </div>
@@ -85,7 +105,7 @@ const Index = () => {
           <div className="text-center mt-10">
             <Link to="/how-it-works">
               <Button variant="outline" className="inline-flex items-center">
-                Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                اعرف المزيد <ArrowRight className="mr-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
@@ -99,15 +119,15 @@ const Index = () => {
       <section className="bg-primary py-16">
         <div className="container-custom text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-            Ready to find your perfect apartment?
+            هل أنت جاهز للعثور على شقتك المثالية في صنعاء؟
           </h2>
           <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8">
-            Join thousands of happy renters who found their home through FindMyFlat.
-            Start browsing available apartments today!
+            انضم إلى آلاف المستأجرين السعداء الذين وجدوا منازلهم من خلال FindMyFlat.
+            ابدأ بتصفح الشقق المتاحة اليوم!
           </p>
           <Link to="/listings">
             <Button size="lg" variant="secondary" className="mx-auto">
-              Browse Apartments
+              تصفح الشقق
             </Button>
           </Link>
         </div>
