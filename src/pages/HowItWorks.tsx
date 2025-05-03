@@ -1,8 +1,7 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Home, Search, Heart, Check, Phone } from 'lucide-react';
+import { Home, Search, Heart, Check, Phone, Plus } from 'lucide-react';
 
 const HowItWorks = () => {
   return (
