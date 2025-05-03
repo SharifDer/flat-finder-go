@@ -1,4 +1,9 @@
 
+/**
+ * This file is for the Dashboard page
+ * Provides analytics and statistics for administrators and property owners
+ */
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,8 +12,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Users, Building, Home, Activity } from 'lucide-react';
 
-// هذي بيانات قادمة من السيرفر من الباك ايند
-// البيانات المتوقعة: عدد المستخدمين المسجلين، عدد الشقق المعروضة، عدد الزوار، إحصائيات أخرى
+// This data comes from the backend
+// Expected data: Number of registered users, number of listed apartments, number of visitors, other stats
 const mockStatsData = {
   totalUsers: 1245,
   registeredUsers: 872,
@@ -18,15 +23,15 @@ const mockStatsData = {
   viewsToday: 1543,
 };
 
-// هذي بيانات قادمة من السيرفر من الباك ايند
-// البيانات المتوقعة: بيانات زمنية لإحصائيات الموقع مثل عدد المستخدمين والشقق
+// This data comes from the backend
+// Expected data: Time-series data for site statistics like users and apartments
 const mockChartData = [
-  { name: 'يناير', users: 400, apartments: 240, views: 2400 },
-  { name: 'فبراير', users: 500, apartments: 250, views: 2800 },
-  { name: 'مارس', users: 600, apartments: 270, views: 3200 },
-  { name: 'أبريل', users: 680, apartments: 290, views: 3600 },
-  { name: 'مايو', users: 750, apartments: 320, views: 4000 },
-  { name: 'يونيو', users: 830, apartments: 350, views: 4300 },
+  { name: 'January', users: 400, apartments: 240, views: 2400 },
+  { name: 'February', users: 500, apartments: 250, views: 2800 },
+  { name: 'March', users: 600, apartments: 270, views: 3200 },
+  { name: 'April', users: 680, apartments: 290, views: 3600 },
+  { name: 'May', users: 750, apartments: 320, views: 4000 },
+  { name: 'June', users: 830, apartments: 350, views: 4300 },
 ];
 
 const Dashboard = () => {
@@ -36,73 +41,75 @@ const Dashboard = () => {
       
       <div className="py-8 bg-gray-50 flex-grow">
         <div className="container-custom">
-          <h1 className="text-3xl font-bold mb-8">لوحة التحكم</h1>
+          <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
           
+          {/* Key Statistics Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">إجمالي المستخدمين</CardTitle>
+                <CardTitle className="text-sm font-medium">Total Users</CardTitle>
                 <Users className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{mockStatsData.totalUsers}</div>
                 <p className="text-xs text-muted-foreground">
-                  +{mockStatsData.newUsersToday} اليوم
+                  +{mockStatsData.newUsersToday} today
                 </p>
               </CardContent>
             </Card>
             
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">المستخدمين المسجلين</CardTitle>
+                <CardTitle className="text-sm font-medium">Registered Users</CardTitle>
                 <Users className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{mockStatsData.registeredUsers}</div>
                 <p className="text-xs text-muted-foreground">
-                  {Math.round((mockStatsData.registeredUsers / mockStatsData.totalUsers) * 100)}% من إجمالي الزوار
+                  {Math.round((mockStatsData.registeredUsers / mockStatsData.totalUsers) * 100)}% of total visitors
                 </p>
               </CardContent>
             </Card>
             
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">الشقق المعروضة</CardTitle>
+                <CardTitle className="text-sm font-medium">Listed Apartments</CardTitle>
                 <Building className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{mockStatsData.totalApartments}</div>
                 <p className="text-xs text-muted-foreground">
-                  +{mockStatsData.newApartmentsToday} اليوم
+                  +{mockStatsData.newApartmentsToday} today
                 </p>
               </CardContent>
             </Card>
             
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">المشاهدات اليومية</CardTitle>
+                <CardTitle className="text-sm font-medium">Daily Views</CardTitle>
                 <Activity className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{mockStatsData.viewsToday}</div>
                 <p className="text-xs text-muted-foreground">
-                  ~{Math.round(mockStatsData.viewsToday / 24)} في الساعة
+                  ~{Math.round(mockStatsData.viewsToday / 24)} per hour
                 </p>
               </CardContent>
             </Card>
           </div>
           
+          {/* Analytics Tabs */}
           <Tabs defaultValue="overview" className="space-y-6">
             <TabsList>
-              <TabsTrigger value="overview">نظرة عامة</TabsTrigger>
-              <TabsTrigger value="users">المستخدمون</TabsTrigger>
-              <TabsTrigger value="apartments">الشقق</TabsTrigger>
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="users">Users</TabsTrigger>
+              <TabsTrigger value="apartments">Apartments</TabsTrigger>
             </TabsList>
             
             <TabsContent value="overview" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>إحصائيات النشاط</CardTitle>
+                  <CardTitle>Activity Statistics</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="h-[300px]">
@@ -126,7 +133,7 @@ const Dashboard = () => {
             <TabsContent value="users" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>نمو المستخدمين</CardTitle>
+                  <CardTitle>User Growth</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="h-[300px]">
@@ -148,7 +155,7 @@ const Dashboard = () => {
             <TabsContent value="apartments" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>نمو الشقق المعروضة</CardTitle>
+                  <CardTitle>Listed Apartments Growth</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="h-[300px]">

@@ -1,4 +1,9 @@
 
+/**
+ * This file is for the Apartment Details page
+ * Displays detailed information about a specific apartment listing
+ */
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -24,9 +29,15 @@ import { Badge } from '@/components/ui/badge';
 import { MapPin, Calendar, Phone, Mail, Heart, ArrowLeft } from 'lucide-react';
 
 const ApartmentDetail = () => {
+  // Get apartment ID from URL parameters
   const { id } = useParams<{ id: string }>();
+  
+  // Find apartment data from the list
+  // In a real application, this would fetch data from the backend
+  // Expected data: Full apartment details including images, amenities, contact info, etc.
   const apartment = apartments.find(apt => apt.id === id);
   
+  // Handle case when apartment is not found
   if (!apartment) {
     return (
       <div className="min-h-screen flex flex-col">
@@ -53,6 +64,7 @@ const ApartmentDetail = () => {
       <Navbar />
       
       <div className="container-custom py-8">
+        {/* Back Navigation */}
         <div className="mb-6">
           <Link to="/listings" className="text-gray-600 hover:text-primary flex items-center">
             <ArrowLeft className="h-4 w-4 mr-1" />
@@ -60,7 +72,7 @@ const ApartmentDetail = () => {
           </Link>
         </div>
         
-        {/* Apartment Header */}
+        {/* Apartment Header - Title, Location, Price */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{apartment.title}</h1>
@@ -104,11 +116,11 @@ const ApartmentDetail = () => {
           </Carousel>
         </div>
         
-        {/* Main Content */}
+        {/* Main Content - Apartment Details and Contact Info */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column - Apartment Details */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Overview */}
+            {/* Overview Section */}
             <div>
               <h2 className="text-xl font-bold mb-4">Overview</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
@@ -136,7 +148,7 @@ const ApartmentDetail = () => {
             
             <Separator />
             
-            {/* Features */}
+            {/* Features Section */}
             <div>
               <h2 className="text-xl font-bold mb-4">Apartment Features</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -151,7 +163,7 @@ const ApartmentDetail = () => {
             
             <Separator />
             
-            {/* Amenities */}
+            {/* Amenities Section */}
             <div>
               <h2 className="text-xl font-bold mb-4">Building Amenities</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -166,7 +178,7 @@ const ApartmentDetail = () => {
             
             <Separator />
             
-            {/* Additional Info */}
+            {/* Additional Info Section */}
             <div>
               <h2 className="text-xl font-bold mb-4">Additional Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

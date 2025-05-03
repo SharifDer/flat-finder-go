@@ -1,4 +1,9 @@
 
+/**
+ * This file is for the Saved Apartments page
+ * Displays apartments that the user has saved/favorited
+ */
+
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -20,8 +25,8 @@ const Favorites = () => {
     setFavoriteApartments(favoriteApartments.filter(apt => apt.id !== apartmentId));
     
     toast({
-      title: "تمت الإزالة من المفضلة",
-      description: "تم إزالة الشقة من قائمة المفضلة بنجاح",
+      title: "Removed from favorites",
+      description: "The apartment was successfully removed from your favorites",
     });
   };
   
@@ -33,10 +38,10 @@ const Favorites = () => {
       <section className="bg-blue-50 py-10">
         <div className="container-custom text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            شققي المفضلة
+            My Favorite Apartments
           </h1>
           <p className="text-lg text-gray-600">
-            الشقق التي قمت بحفظها للمراجعة لاحقًا
+            Apartments you've saved for later review
           </p>
         </div>
       </section>
@@ -56,7 +61,7 @@ const Favorites = () => {
                     onClick={() => removeFromFavorites(apartment.id)}
                   >
                     <Heart className="h-4 w-4 mr-1 fill-current" />
-                    إزالة من المفضلة
+                    Remove from favorites
                   </Button>
                 </div>
               ))}
@@ -66,12 +71,12 @@ const Favorites = () => {
               <div className="bg-blue-50 rounded-full p-6 inline-flex mb-4">
                 <Heart className="h-12 w-12 text-gray-400" />
               </div>
-              <h2 className="text-2xl font-semibold mb-2">لا توجد شقق مفضلة</h2>
+              <h2 className="text-2xl font-semibold mb-2">No favorite apartments</h2>
               <p className="text-gray-600 mb-6 max-w-md mx-auto">
-                لم تقم بإضافة أي شقق إلى قائمة المفضلة بعد. تصفح الشقق وأضف المفضلة لديك.
+                You haven't added any apartments to your favorites yet. Browse apartments and add your favorites.
               </p>
               <Button asChild>
-                <a href="/listings">تصفح الشقق المتاحة</a>
+                <a href="/listings">Browse available apartments</a>
               </Button>
             </div>
           )}
@@ -82,7 +87,7 @@ const Favorites = () => {
       {favoriteApartments.length > 0 && (
         <section className="py-12 bg-gray-50">
           <div className="container-custom">
-            <h2 className="text-2xl font-bold mb-8">قد تعجبك أيضًا</h2>
+            <h2 className="text-2xl font-bold mb-8">You might also like</h2>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {apartments.slice(3, 6).map(apartment => (
@@ -102,12 +107,12 @@ const Favorites = () => {
                 <AlertCircle className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2">نصائح للبحث عن شقة</h3>
+                <h3 className="text-lg font-semibold mb-2">Tips for Apartment Hunting</h3>
                 <ul className="list-disc list-inside space-y-1 text-gray-600">
-                  <li>قارن بين عدة خيارات قبل اتخاذ القرار النهائي</li>
-                  <li>تحقق من الموقع ومدى قربه من الخدمات الأساسية</li>
-                  <li>احرص على زيارة الشقة والتأكد من جميع المرافق</li>
-                  <li>اقرأ شروط العقد جيدًا قبل التوقيع</li>
+                  <li>Compare several options before making a final decision</li>
+                  <li>Check the location and its proximity to essential services</li>
+                  <li>Make sure to visit the apartment and verify all facilities</li>
+                  <li>Read the contract terms carefully before signing</li>
                 </ul>
               </div>
             </div>

@@ -1,4 +1,9 @@
 
+/**
+ * This file is for the Homepage
+ * Displays the main landing page with search functionality and featured listings
+ */
+
 import React from 'react';
 import SearchBar from '@/components/SearchBar';
 import FeaturedListings from '@/components/FeaturedListings';
@@ -25,11 +30,11 @@ const Index = () => {
       <section className="bg-blue-50 py-16 md:py-24">
         <div className="container-custom text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            ابحث عن منزلك المثالي في <span className="text-primary">صنعاء</span>
+            Find your ideal home in <span className="text-primary">Sanaa</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10">
-            اتصال مباشر مع مالكي العقارات. بدون وسطاء، بدون رسوم إضافية.
-            مجرد بحث بسيط عن شقق بناءً على الموقع.
+            Direct connection with property owners. No middlemen, no extra fees.
+            Just simple apartment search based on location.
           </p>
           
           <SearchBar variant="hero" />
@@ -37,15 +42,15 @@ const Index = () => {
           <div className="flex flex-wrap justify-center gap-6 mt-8">
             <div className="flex items-center">
               <Home className="h-5 w-5 text-primary mr-2" />
-              <span className="text-gray-700">أكثر من 1000 إعلان</span>
+              <span className="text-gray-700">Over 1000 listings</span>
             </div>
             <div className="flex items-center">
               <MapPin className="h-5 w-5 text-primary mr-2" />
-              <span className="text-gray-700">أكثر من 50 حي سكني</span>
+              <span className="text-gray-700">More than 50 neighborhoods</span>
             </div>
             <div className="flex items-center">
               <Heart className="h-5 w-5 text-primary mr-2" />
-              <span className="text-gray-700">اتصال مباشر بالمالك</span>
+              <span className="text-gray-700">Direct contact with owners</span>
             </div>
           </div>
         </div>
@@ -55,12 +60,12 @@ const Index = () => {
       <section className="py-12 bg-white">
         <div className="container-custom">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-8">
-            المناطق الشهيرة في صنعاء
+            Popular Areas in Sanaa
           </h2>
-          {/* هذي بيانات قادمة من السيرفر من الباك ايند */}
-          {/* البيانات المتوقعة: أسماء المناطق الشهيرة، عدد الشقق في كل منطقة */}
+          {/* This data comes from the backend */}
+          {/* Expected data: Popular area names, number of apartments in each area */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {['حدة', 'شارع تعز', 'السنينة', 'شارع الستين', 'الحصبة', 'حي الجامعة'].map((area) => (
+            {['Hadda', 'Taiz Street', 'Al-Sunaina', 'Sixty Street', 'Al-Hasaba', 'University District'].map((area) => (
               <Link 
                 key={area} 
                 to={`/listings?location=${area}`}
@@ -80,7 +85,7 @@ const Index = () => {
       <section className="py-16 bg-gray-50">
         <div className="container-custom">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12">
-            كيف يعمل FindMyFlat
+            How FindMyFlat Works
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -88,9 +93,9 @@ const Index = () => {
               <div className="bg-blue-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
                 <SearchIcon className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">ابحث عن العقارات</h3>
+              <h3 className="text-xl font-semibold mb-3">Search for Properties</h3>
               <p className="text-gray-600">
-                ابحث بسهولة عن الشقق بناءً على موقعك المفضل، والميزانية، والمرافق.
+                Easily search for apartments based on your preferred location, budget, and amenities.
               </p>
             </div>
             
@@ -98,9 +103,9 @@ const Index = () => {
               <div className="bg-blue-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
                 <Heart className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">تواصل مباشرةً</h3>
+              <h3 className="text-xl font-semibold mb-3">Direct Contact</h3>
               <p className="text-gray-600">
-                تواصل مع مالكي العقارات مباشرةً، بدون وسطاء أو رسوم إضافية.
+                Connect directly with property owners, without intermediaries or extra fees.
               </p>
             </div>
             
@@ -108,9 +113,9 @@ const Index = () => {
               <div className="bg-blue-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
                 <Home className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">انتقل إلى منزلك الجديد</h3>
+              <h3 className="text-xl font-semibold mb-3">Move into Your New Home</h3>
               <p className="text-gray-600">
-                جدولة المعاينات، وإنهاء التفاصيل، والاستمتاع بمنزلك الجديد بدون متاعب إضافية.
+                Schedule viewings, finalize details, and enjoy your new home without any additional hassles.
               </p>
             </div>
           </div>
@@ -118,7 +123,7 @@ const Index = () => {
           <div className="text-center mt-10">
             <Link to="/how-it-works">
               <Button variant="outline" className="inline-flex items-center">
-                اعرف المزيد <ArrowRight className="mr-2 h-4 w-4" />
+                Learn More <ArrowRight className="mr-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
@@ -127,8 +132,8 @@ const Index = () => {
       
       {/* Featured Listings */}
       <div className="py-0">
-        {/* هذي بيانات قادمة من السيرفر من الباك ايند */}
-        {/* البيانات المتوقعة: بيانات الشقق المميزة، تتضمن الصور، الأسعار، المواقع، عدد الغرف، إلخ */}
+        {/* This data comes from the backend */}
+        {/* Expected data: Featured apartment data including images, prices, locations, number of rooms, etc. */}
         <FeaturedListings />
       </div>
       
@@ -136,15 +141,15 @@ const Index = () => {
       <section className="bg-primary py-16">
         <div className="container-custom text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-            هل أنت جاهز للعثور على شقتك المثالية في صنعاء؟
+            Are you ready to find your perfect apartment in Sanaa?
           </h2>
           <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8">
-            انضم إلى آلاف المستأجرين السعداء الذين وجدوا منازلهم من خلال FindMyFlat.
-            ابدأ بتصفح الشقق المتاحة اليوم!
+            Join thousands of happy tenants who found their homes through FindMyFlat.
+            Start browsing available apartments today!
           </p>
           <Link to="/listings">
             <Button size="lg" variant="secondary" className="mx-auto">
-              تصفح الشقق
+              Browse Apartments
             </Button>
           </Link>
         </div>
