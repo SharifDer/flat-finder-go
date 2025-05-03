@@ -1,4 +1,3 @@
-
 /**
  * This file is for the About Us page
  * Provides information about the platform, team, and contact details
@@ -18,10 +17,10 @@ const About = () => {
       <section className="bg-blue-50 py-16">
         <div className="container-custom text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            About Us
+            عن الموقع
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Sakan Sanaa platform is the ideal solution for those looking for apartments to rent in Sanaa without intermediaries or additional commissions
+            منصة سكن صنعاء هي الحل المثالي لأولئك الذين يبحثون عن شقق للإيجار في صنعاء دون وسطاء أو عمولات إضافية.
           </p>
         </div>
       </section>
@@ -31,19 +30,19 @@ const About = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-2xl font-bold mb-6 text-primary">Our Story</h2>
+              <h2 className="text-2xl font-bold mb-6 text-primary">قصتنا</h2>
               <p className="text-gray-600 mb-4">
-                Sakan Sanaa platform was established in response to the challenges faced by people searching for housing in Sanaa, where many have to deal with real estate intermediaries and pay high commissions.
+                تم تأسيس منصة سكن صنعاء استجابة للتحديات التي يواجهها الناس أثناء البحث عن السكن في صنعاء، حيث يضطر الكثيرون للتعامل مع الوسطاء العقاريين ودفع عمولات مرتفعة.
               </p>
               <p className="text-gray-600 mb-4">
-                We aim to provide a simple and effective platform that directly connects tenants and property owners, eliminating the need for intermediaries and making the housing search process more transparent and less costly.
+                هدفنا هو تقديم منصة بسيطة وفعالة تربط بين المستأجرين ومالكي العقارات مباشرة، مما يقضي على الحاجة للوسطاء ويجعل عملية البحث عن السكن أكثر شفافية وأقل تكلفة.
               </p>
               <p className="text-gray-600">
-                We are a local team from Sanaa seeking to improve the housing search experience in our city and make it easy and hassle-free.
+                نحن فريق محلي من صنعاء نسعى لتحسين تجربة البحث عن السكن في مدينتنا وجعلها سهلة ومريحة.
               </p>
             </div>
             <div className="bg-blue-50 p-8 rounded-lg">
-              <h2 className="text-2xl font-bold mb-6 text-center text-primary">Our Features</h2>
+              <h2 className="text-2xl font-bold mb-6 text-center text-primary">مميزاتنا</h2>
               
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -51,8 +50,8 @@ const About = () => {
                     <Shield className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Transparency and Security</h3>
-                    <p className="text-gray-600">We verify all listings to ensure information accuracy and user protection.</p>
+                    <h3 className="font-semibold text-lg mb-2">الشفافية والأمان</h3>
+                    <p className="text-gray-600">نقوم بالتحقق من جميع الإعلانات لضمان دقة المعلومات وحماية المستخدمين.</p>
                   </div>
                 </div>
                 
@@ -61,8 +60,8 @@ const About = () => {
                     <Users className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Direct Communication</h3>
-                    <p className="text-gray-600">We enable direct communication between tenants and owners without any intermediaries.</p>
+                    <h3 className="font-semibold text-lg mb-2">التواصل المباشر</h3>
+                    <p className="text-gray-600">نمكن المستأجرين ومالكي العقارات من التواصل مباشرة دون وسطاء.</p>
                   </div>
                 </div>
                 
@@ -71,8 +70,8 @@ const About = () => {
                     <MessageSquare className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Local Support</h3>
-                    <p className="text-gray-600">Our local team is ready to help you with any inquiries or issues.</p>
+                    <h3 className="font-semibold text-lg mb-2">الدعم المحلي</h3>
+                    <p className="text-gray-600">فريقنا المحلي جاهز لمساعدتك في أي استفسارات أو مشاكل.</p>
                   </div>
                 </div>
               </div>
@@ -84,34 +83,34 @@ const About = () => {
       {/* Team Section */}
       <section className="py-16 bg-gray-50">
         <div className="container-custom">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">فريقنا</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-sm text-center">
               <div className="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <User className="h-12 w-12 text-primary" />
               </div>
-              <h3 className="font-semibold text-xl mb-1">Ahmed Al-Sanaani</h3>
-              <p className="text-primary mb-3">Founder & CEO</p>
-              <p className="text-gray-600">Real estate expert with over 10 years of experience in the Yemeni real estate market.</p>
+              <h3 className="font-semibold text-xl mb-1">أحمد الصنعاني</h3>
+              <p className="text-primary mb-3">المؤسس والرئيس التنفيذي</p>
+              <p className="text-gray-600">خبير في العقارات مع أكثر من 10 سنوات من الخبرة في سوق العقارات اليمني.</p>
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-sm text-center">
               <div className="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <User className="h-12 w-12 text-primary" />
               </div>
-              <h3 className="font-semibold text-xl mb-1">Sarah Al-Yemeni</h3>
-              <p className="text-primary mb-3">Operations Manager</p>
-              <p className="text-gray-600">Specializes in business development and improving user experience on digital platforms.</p>
+              <h3 className="font-semibold text-xl mb-1">سارة اليمني</h3>
+              <p className="text-primary mb-3">مدير العمليات</p>
+              <p className="text-gray-600">متخصصة في تطوير الأعمال وتحسين تجربة المستخدم على المنصات الرقمية.</p>
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-sm text-center">
               <div className="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <User className="h-12 w-12 text-primary" />
               </div>
-              <h3 className="font-semibold text-xl mb-1">Mohammed Al-Ezzi</h3>
-              <p className="text-primary mb-3">CTO</p>
-              <p className="text-gray-600">Software developer with extensive experience in building user-friendly electronic platforms.</p>
+              <h3 className="font-semibold text-xl mb-1">محمد العزي</h3>
+              <p className="text-primary mb-3">المدير الفني</p>
+              <p className="text-gray-600">مطور برمجيات مع خبرة واسعة في بناء المنصات الإلكترونية سهلة الاستخدام.</p>
             </div>
           </div>
         </div>
@@ -120,9 +119,9 @@ const About = () => {
       {/* Contact Section */}
       <section className="py-16">
         <div className="container-custom text-center">
-          <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
+          <h2 className="text-3xl font-bold mb-6">تواصل معنا</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-            Do you have questions or feedback? Our team is ready to help
+            هل لديك أسئلة أو ملاحظات؟ فريقنا جاهز لمساعدتك.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
@@ -130,7 +129,7 @@ const About = () => {
               <div className="bg-blue-100 rounded-full p-4 inline-flex mb-4">
                 <Phone className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">Call Us</h3>
+              <h3 className="font-semibold mb-2">اتصل بنا</h3>
               <p className="text-gray-600">+967 1 234 5678</p>
             </div>
             
@@ -138,7 +137,7 @@ const About = () => {
               <div className="bg-blue-100 rounded-full p-4 inline-flex mb-4">
                 <Mail className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">Email</h3>
+              <h3 className="font-semibold mb-2">البريد الإلكتروني</h3>
               <p className="text-gray-600">info@sakansanaa.com</p>
             </div>
             
@@ -146,8 +145,8 @@ const About = () => {
               <div className="bg-blue-100 rounded-full p-4 inline-flex mb-4">
                 <MapPin className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">Address</h3>
-              <p className="text-gray-600">Al-Zubairi Street, Sanaa, Yemen</p>
+              <h3 className="font-semibold mb-2">العنوان</h3>
+              <p className="text-gray-600">شارع الزبيري، صنعاء، اليمن</p>
             </div>
           </div>
         </div>

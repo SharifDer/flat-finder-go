@@ -16,6 +16,7 @@ const ListingsPage = () => {
   const [searchParams] = useSearchParams();
   const [displayedApartments, setDisplayedApartments] = useState<Apartment[]>(apartments);
   const [showFilters, setShowFilters] = useState(false);
+  const [hasFiltersApplied, setHasFiltersApplied] = useState(false);
   const [sortMode, setSortMode] = useState<'price-asc' | 'price-desc' | 'newest'>('newest');
   const { toast } = useToast();
   
@@ -46,60 +47,67 @@ const ListingsPage = () => {
   // Apply filters
   const applyFilters = () => {
     let filtered = apartments;
-    
+    let filtersApplied = false; // Track if filters are applied
+  
     // Filter by location if provided
     if (locationParam) {
       filtered = filtered.filter(apt => 
         apt.location.toLowerCase().includes(locationParam.toLowerCase())
       );
+      filtersApplied = true;
     }
-    
+  
     // Filter by type if provided
     if (typeParam) {
       filtered = filtered.filter(apt => 
         apt.type === typeParam
       );
+      filtersApplied = true;
     }
-    
+  
     // Filter by price range
     filtered = filtered.filter(apt => 
       apt.price >= priceRange[0] && apt.price <= priceRange[1]
     );
-    
+    if (priceRange[0] !== 0 || priceRange[1] !== 5000) filtersApplied = true;
+  
     // Filter by bedrooms
     if (bedrooms.length > 0) {
       filtered = filtered.filter(apt => {
-        // Special case for studio (0 bedrooms)
         if (bedrooms.includes('studio') && apt.bedrooms === 0) return true;
         return bedrooms.includes(apt.bedrooms.toString());
       });
+      filtersApplied = true;
     }
-    
+  
     // Filter by bathrooms
     if (bathrooms.length > 0) {
       filtered = filtered.filter(apt => 
         bathrooms.includes(apt.bathrooms.toString())
       );
+      filtersApplied = true;
     }
-    
+  
     // Filter by pet-friendly
     if (petFriendly) {
       filtered = filtered.filter(apt => apt.petFriendly);
+      filtersApplied = true;
     }
-    
+  
     // Filter by furnished
     if (furnished) {
       filtered = filtered.filter(apt => apt.furnished);
+      filtersApplied = true;
     }
-    
+  
     // Filter by floor (if it exists in the data)
     if (floor.length > 0 && filtered.some(apt => 'floor' in apt)) {
       filtered = filtered.filter(apt => 
-        // @ts-ignore: Property 'floor' does not exist on type 'Apartment'
         floor.includes(apt.floor?.toString() || '')
       );
+      filtersApplied = true;
     }
-    
+  
     // Apply sorting
     switch(sortMode) {
       case 'price-asc':
@@ -109,19 +117,20 @@ const ListingsPage = () => {
         filtered = [...filtered].sort((a, b) => b.price - a.price);
         break;
       case 'newest':
-        // For this example, we'll assume that the array is already sorted by newest
-        // In a real app, you would sort by date added/updated
         break;
     }
-    
+  
     setDisplayedApartments(filtered);
-    
-    // Show toast when filters are applied
-    toast({
-      title: "تم تطبيق المرشحات",
-      description: `تم العثور على ${filtered.length} شقة`,
-    });
+    setHasFiltersApplied(filtersApplied);
+  
+    if (filtersApplied) {
+      toast({
+        title: "تم تطبيق المرشحات",
+        description: `تم العثور على ${filtered.length} شقة`,
+      });
+    }
   };
+  
   
   // Toggle bedroom filter
   const toggleBedroom = (value: string) => {
@@ -250,7 +259,7 @@ const ListingsPage = () => {
                 </div>
                 
                 {/* Bathrooms */}
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                   <h3 className="font-medium mb-3">الحمامات</h3>
                   <div className="space-y-2">
                     {[1, 1.5, 2, 2.5, 3].map(num => (
@@ -265,9 +274,9 @@ const ListingsPage = () => {
                     ))}
                   </div>
                 </div>
-                
+                 */}
                 {/* Floor */}
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                   <h3 className="font-medium mb-3">الطابق</h3>
                   <div className="space-y-2">
                     {[0, 1, 2, 3, 4, 5].map(num => (
@@ -284,7 +293,7 @@ const ListingsPage = () => {
                     ))}
                   </div>
                 </div>
-                
+                 */}
                 {/* More Filters */}
                 <div className="col-span-1">
                   <h3 className="font-medium mb-3">مرشحات إضافية</h3>

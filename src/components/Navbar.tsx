@@ -1,5 +1,7 @@
-
-import React, { useState } from 'react';
+/**
+ * This file is for the navbar
+ * Displays the main landing page with search functionality and featured listings
+ */import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, User, Heart, Plus, Menu, X, ChevronDown, Search, Building, FileText, CalendarDays } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -42,39 +44,39 @@ const Navbar = () => {
         
         {/* Top Bar - Login/Register Links */}
         {/* 
-        <div className="flex justify-end mb-4 text-sm">
+        <div className="flex justify-start mb-4 text-sm">
           {isLoggedIn ? (
-            <div className="flex items-center space-x-4 flex-row-reverse">
-              <span className="text-gray-600">Welcome</span>
+            <div className="flex items-center space-x-4">
+              <span className="text-gray-600">مرحبًا</span>
               <button
                 onClick={handleLogout}
                 className="text-primary hover:underline"
               >
-                Logout
+                تسجيل الخروج
               </button>
             </div>
           ) : (
-            <div className="flex items-center space-x-4 flex-row-reverse">
+            <div className="flex items-center space-x-4">
               <button
                 onClick={() => setAuthModalOpen(true)}
                 className="text-primary hover:underline"
               >
-                Login
+                تسجيل الدخول
               </button>
               <span className="text-gray-400">|</span>
               <button
                 onClick={() => setAuthModalOpen(true)}
                 className="text-primary hover:underline"
               >
-                Create Account
+                إنشاء حساب
               </button>
               <span className="text-gray-600">
-                If you already have an account, 
+                إذا كان لديك حساب بالفعل, 
                 <button
                   onClick={() => setAuthModalOpen(true)}
                   className="text-primary hover:underline mr-1"
                 >
-                  login here
+                  قم بتسجيل الدخول هنا
                 </button>
               </span>
             </div>
@@ -84,9 +86,9 @@ const Navbar = () => {
         
         {/* Main Navbar */}
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2 flex-row-reverse">
-            <Home className="h-6 w-6 text-primary mr-2" />
-            <span className="font-bold text-xl text-gray-800">Sakan Sanaa</span>
+          <Link to="/" className="flex items-center space-x-2">
+            <Home className="h-6 w-6 text-primary ml-2" />
+            <span className="font-bold text-xl text-gray-800">سكن صنعاء</span>
           </Link>
           
           {/* Mobile menu button */}
@@ -102,7 +104,7 @@ const Navbar = () => {
           
           {/* Desktop Navigation */}
           <div className={cn(
-            "md:flex items-center space-x-6 flex-row-reverse hidden"
+            "md:flex items-center space-x-6 hidden"
           )}>
             <Link 
               to="/" 
@@ -111,7 +113,7 @@ const Navbar = () => {
                 isActive('/') && "text-primary font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary"
               )}
             >
-              Home
+              الرئيسية
             </Link>
             
             <Link 
@@ -121,7 +123,7 @@ const Navbar = () => {
                 isActive('/listings') && "text-primary font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary"
               )}
             >
-              Browse Apartments
+              تصفح الشقق
             </Link>
             
             <Link 
@@ -131,7 +133,7 @@ const Navbar = () => {
                 isActive('/how-it-works') && "text-primary font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary"
               )}
             >
-              How It Works
+              كيف يعمل الموقع
             </Link>
             
             <Link 
@@ -141,7 +143,7 @@ const Navbar = () => {
                 isActive('/about') && "text-primary font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary"
               )}
             >
-              About Us
+              عن الموقع
             </Link>
             
             <Link 
@@ -152,14 +154,14 @@ const Navbar = () => {
               )}
             >
               <span className="flex items-center">
-                <Plus className="h-4 w-4 ml-1" />
-                Add Your Apartment
+                <Plus className="h-4 w-4 mr-1" />
+                إضافة شقتك
               </span>
             </Link>
           </div>
           
           {/* User Actions */}
-          <div className="hidden md:flex items-center space-x-4 flex-row-reverse">
+          <div className="hidden md:flex items-center space-x-4">
             <Link 
               to="/favorites" 
               className={cn(
@@ -173,37 +175,37 @@ const Navbar = () => {
             {isLoggedIn ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm" className="flex items-center space-x-1 flex-row-reverse">
-                    <User className="h-4 w-4 ml-1" />
-                    <span>My Account</span>
-                    <ChevronDown className="h-3 w-3 opacity-50 mr-1" />
+                  <Button variant="outline" size="sm" className="flex items-center space-x-1">
+                    <User className="h-4 w-4 mr-1" />
+                    <span>حسابي</span>
+                    <ChevronDown className="h-3 w-3 opacity-50 ml-1" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
                   <DropdownMenuItem asChild>
                     <Link to="/profile" className="flex items-center gap-2">
-                      <User className="h-4 w-4" /> Profile
+                      <User className="h-4 w-4" /> الملف الشخصي
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link to="/favorites" className="flex items-center gap-2">
-                      <Heart className="h-4 w-4" /> Saved Apartments
+                      <Heart className="h-4 w-4" /> الشقق المحفوظة
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link to="/application" className="flex items-center gap-2">
-                      <FileText className="h-4 w-4" /> Applications
+                      <FileText className="h-4 w-4" /> الطلبات
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link to="/viewings" className="flex items-center gap-2">
-                      <CalendarDays className="h-4 w-4" /> Viewings
+                      <CalendarDays className="h-4 w-4" /> المعاينات
                     </Link>
                   </DropdownMenuItem>
                   {userType === 'landlord' && (
                     <DropdownMenuItem asChild>
                       <Link to="/dashboard" className="flex items-center gap-2">
-                        <Building className="h-4 w-4" /> Dashboard
+                        <Building className="h-4 w-4" /> لوحة التحكم
                       </Link>
                     </DropdownMenuItem>
                   )}
@@ -213,11 +215,11 @@ const Navbar = () => {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="flex items-center space-x-1 flex-row-reverse"
+                className="flex items-center space-x-1"
                 onClick={() => setAuthModalOpen(true)}
               >
-                <User className="h-4 w-4 ml-1" />
-                <span>Login</span>
+                <User className="h-4 w-4 mr-1" />
+                <span>تسجيل الدخول</span>
               </Button>
             )}
           </div>
@@ -234,7 +236,7 @@ const Navbar = () => {
               className="block py-2 text-gray-800 hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Home
+              الرئيسية
             </Link>
             
             <Link 
@@ -242,7 +244,7 @@ const Navbar = () => {
               className="block py-2 text-gray-800 hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Browse Apartments
+              تصفح الشقق
             </Link>
             
             <Link 
@@ -250,7 +252,7 @@ const Navbar = () => {
               className="block py-2 text-gray-800 hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              How It Works
+              كيف يعمل الموقع
             </Link>
             
             <Link 
@@ -258,7 +260,7 @@ const Navbar = () => {
               className="block py-2 text-gray-800 hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              About Us
+              عن الموقع
             </Link>
             
             <Link 
@@ -266,7 +268,7 @@ const Navbar = () => {
               className="block py-2 text-gray-800 hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Add Your Apartment
+              إضافة شقتك
             </Link>
             
             <Link 
@@ -274,7 +276,7 @@ const Navbar = () => {
               className="block py-2 text-gray-800 hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Saved Apartments
+              الشقق المحفوظة
             </Link>
             
             {isLoggedIn ? (
@@ -284,7 +286,7 @@ const Navbar = () => {
                   className="block py-2 text-gray-800 hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Profile
+                  الملف الشخصي
                 </Link>
                 
                 <Link 
@@ -292,7 +294,7 @@ const Navbar = () => {
                   className="block py-2 text-gray-800 hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Applications
+                  الطلبات
                 </Link>
                 
                 <Link 
@@ -300,7 +302,7 @@ const Navbar = () => {
                   className="block py-2 text-gray-800 hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Viewings
+                  المعاينات
                 </Link>
                 
                 <button
@@ -310,7 +312,7 @@ const Navbar = () => {
                   }}
                   className="block w-full text-right py-2 text-red-500 hover:text-red-700"
                 >
-                  Logout
+                  تسجيل الخروج
                 </button>
               </>
             ) : (
@@ -321,7 +323,7 @@ const Navbar = () => {
                 }}
                 className="w-full mt-2"
               >
-                Login / Create Account
+                تسجيل الدخول / إنشاء حساب
               </Button>
             )}
           </div>

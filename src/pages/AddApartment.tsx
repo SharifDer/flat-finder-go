@@ -260,7 +260,7 @@ const AddApartment = () => {
                         )}
                       />
                       
-                      <FormField
+                      {/* <FormField
                         control={form.control}
                         name="floor"
                         render={({ field }) => (
@@ -285,7 +285,7 @@ const AddApartment = () => {
                             <FormMessage />
                           </FormItem>
                         )}
-                      />
+                      /> */}
                     </div>
                     
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
