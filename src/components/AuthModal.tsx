@@ -18,7 +18,7 @@ const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // هذي البيانات تذهب للباك ايند
+        // This data goes to the backend 
     // البيانات المتوقعة: البريد الالكتروني، كلمة المرور
     setIsLoggedIn(true);
     onOpenChange(false);
@@ -26,7 +26,7 @@ const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    // هذي البيانات تذهب للباك ايند
+        // This data goes to the backend 
     // البيانات المتوقعة: الاسم، البريد الالكتروني، كلمة المرور
     setIsLoggedIn(true);
     onOpenChange(false);
