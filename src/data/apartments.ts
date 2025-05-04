@@ -29,7 +29,7 @@ export const apartments: Apartment[] = [
     id: '1',
     title: 'Modern Downtown Apartment',
     description: 'Bright and spacious downtown apartment with stunning city views. This newly renovated unit features hardwood floors, stainless steel appliances, and large windows that fill the space with natural light. Centrally located with easy access to public transportation, restaurants, and shopping.',
-    price: 1800,
+    price: 130000,
     location: '123 Main St, Downtown',
     images: [
       'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
@@ -57,7 +57,7 @@ export const apartments: Apartment[] = [
     id: '2',
     title: 'Cozy Studio in Westside',
     description: 'Charming studio apartment in a quiet neighborhood with great amenities. This cozy unit includes a fully equipped kitchen, built-in storage solutions, and access to a shared garden. Perfect for a single professional or student looking for affordable living in a convenient location.',
-    price: 1200,
+    price: 50000,
     location: '456 Elm St, Westside',
     images: [
       'https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
@@ -85,7 +85,7 @@ export const apartments: Apartment[] = [
     id: '3',
     title: 'Luxury 3BR with Balcony',
     description: 'Spectacular 3-bedroom apartment with high-end finishes and a private balcony. This luxury unit features a gourmet kitchen with marble countertops, spa-like bathrooms, walk-in closets, and floor-to-ceiling windows. The large private balcony offers panoramic views and is perfect for entertaining.',
-    price: 3500,
+    price: 15000,
     location: '789 Oak Ave, Riverside',
     images: [
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
@@ -113,7 +113,7 @@ export const apartments: Apartment[] = [
     id: '4',
     title: 'Renovated 1BR with Garden Access',
     description: 'Beautifully renovated 1-bedroom apartment with direct access to a shared garden. This charming unit features a modern kitchen, updated bathroom, and a bright living space. Located in a quiet residential neighborhood with easy access to parks, cafes, and public transportation.',
-    price: 1500,
+    price: 90000,
     location: '101 Pine St, Greenview',
     images: [
       'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80',
@@ -141,7 +141,7 @@ export const apartments: Apartment[] = [
     id: '5',
     title: 'Spacious 2BR Townhouse',
     description: 'Two-level townhouse with modern finishes and private entrance. This spacious unit offers an open concept living area, updated kitchen, and two generous bedrooms. Includes a small private patio perfect for outdoor relaxation. Located in a vibrant neighborhood close to shops and restaurants.',
-    price: 2200,
+    price: 160000,
     location: '567 Maple Dr, Eastside',
     images: [
       'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
@@ -169,7 +169,7 @@ export const apartments: Apartment[] = [
     id: '6',
     title: 'Furnished Studio near University',
     description: 'Fully furnished studio apartment perfect for students or young professionals. This efficient unit comes complete with modern furniture, a full kitchen, and all necessary appliances. Located just blocks from the university and close to public transportation, cafes, and shops.',
-    price: 1100,
+    price: 195000,
     location: '321 College Blvd, University District',
     images: [
       'https://images.unsplash.com/photo-1560448204-61dc36dc98c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',

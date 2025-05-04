@@ -85,7 +85,7 @@ const Navbar = () => {
         */}
         
         {/* Main Navbar */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-row-reverse">
           <Link to="/" className="flex items-center space-x-2">
             <Home className="h-6 w-6 text-primary ml-2" />
             <span className="font-bold text-xl text-gray-800">سكن صنعاء</span>
@@ -135,7 +135,7 @@ const Navbar = () => {
             >
               كيف يعمل الموقع
             </Link>
-            
+{/*             
             <Link 
               to="/about" 
               className={cn(
@@ -145,7 +145,7 @@ const Navbar = () => {
             >
               عن الموقع
             </Link>
-            
+             */}
             <Link 
               to="/add-apartment" 
               className={cn(
@@ -255,13 +255,13 @@ const Navbar = () => {
               كيف يعمل الموقع
             </Link>
             
-            <Link 
+            {/* <Link 
               to="/about"
               className="block py-2 text-gray-800 hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               عن الموقع
-            </Link>
+            </Link> */}
             
             <Link 
               to="/add-apartment"

@@ -29,11 +29,11 @@ const Index = () => {
       <section className="bg-blue-50 py-16 md:py-24">
         <div className="container-custom text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            ابحث عن منزل مثالي في <span className="text-primary">صنعاء</span>
+            ابحث عن شقتك المثالية في <span className="text-primary">صنعاء</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10">
-            الاتصال المباشر مع مالكي العقارات. لا وسطاء، لا رسوم إضافية.
-            فقط بحث بسيط عن الشقق استنادًا إلى الموقع.
+            تواصل بشكل مباشر مع مالكي العقارات. لا وسطاء، لا رسوم إضافية.
+            {/* فقط بحث بسيط عن الشقق استنادًا إلى الموقع. */}
           </p>
           
           <SearchBar variant="hero" />
@@ -41,15 +41,15 @@ const Index = () => {
           <div className="flex flex-wrap justify-center gap-6 mt-8">
             <div className="flex items-center">
               <Home className="h-5 w-5 text-primary mr-2" />
-              <span className="text-gray-700">أكثر من 1000 إعلان</span>
+              <span className="text-gray-700">شقق حول العاصمة صنعاء </span>
             </div>
             <div className="flex items-center">
               <MapPin className="h-5 w-5 text-primary mr-2" />
-              <span className="text-gray-700">أكثر من 50 حي</span>
+              <span className="text-gray-700">في جميع الأحياء الرئيسية</span>
             </div>
             <div className="flex items-center">
               <Heart className="h-5 w-5 text-primary mr-2" />
-              <span className="text-gray-700">اتصال مباشر مع المالكين</span>
+              <span className="text-gray-700">تواصل مباشر مع المالكين</span>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@ const Index = () => {
           {/* This data comes from the backend */}
           {/* Expected data: Popular area names, number of apartments in each area */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {['حده', 'شارع تعز', 'الصنينة', 'شارع الستين', 'الحصبة', 'منطقة الجامعة'].map((area) => (
+            {['حدة', 'شارع تعز', 'السنينة', 'شارع الستين', 'الحصبة','بيت بوس'].map((area) => (
               <Link 
                 key={area} 
                 to={`/listings?location=${area}`}
@@ -94,7 +94,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">البحث عن العقارات</h3>
               <p className="text-gray-600">
-                ابحث بسهولة عن الشقق بناءً على الموقع المفضل لديك والميزانية والمرافق.
+                .ابحث بسهولة عن الشقق بناءً على الموقع المفضل لديك والميزانية
               </p>
             </div>
             

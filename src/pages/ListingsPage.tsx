@@ -11,8 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-// This file is for the listings page where users can browse and filter apartments
+import { RangeSlider } from "@/components/ui/range-slider";
+import { useRef } from 'react';
 
 const ListingsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -32,7 +32,29 @@ const ListingsPage = () => {
     priceMax?: number;
     sort?: string;
   }>({});
+  const priceSliderRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        priceSliderRef.current &&
+        !priceSliderRef.current.contains(event.target as Node)
+      ) {
+        setShowPriceSlider(false);
+      }
+    };
+  
+    if (showPriceSlider) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+  
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showPriceSlider]);
+  
   // Locations from SearchBar component
   const yemenNeighborhoods = [
     'حدة',
@@ -124,11 +146,6 @@ const ListingsPage = () => {
   // Handle price range change
   const handlePriceRangeChange = (value: number[]) => {
     setPriceRange(value);
-    setActiveFilters(prev => ({
-      ...prev,
-      priceMin: value[0],
-      priceMax: value[1],
-    }));
   };
 
   // Handle location change
@@ -202,6 +219,20 @@ const ListingsPage = () => {
     });
   };
 
+  // Check if price filter is active (not default values)
+  const isPriceFilterActive = () => {
+    return (activeFilters.priceMin !== undefined && activeFilters.priceMin !== 10000) || 
+           (activeFilters.priceMax !== undefined && activeFilters.priceMax !== 200000);
+  };
+
+  // Count active non-default filters
+  const countActiveFilters = () => {
+    return Object.keys(activeFilters).filter(key => {
+      if (key === 'priceMin' || key === 'priceMax') return isPriceFilterActive();
+      return true;
+    }).length;
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -240,10 +271,12 @@ const ListingsPage = () => {
               </Button>
               
               {showPriceSlider && (
-                <div className="absolute z-10 mt-2 p-4 bg-white rounded-md shadow-lg border w-64 md:w-72">
+                <div
+                  ref={priceSliderRef}
+                  className="absolute z-10 mt-2 p-4 bg-white rounded-md shadow-lg border w-64 md:w-72"
+                >
                   <Label className="mb-2 block">نطاق السعر (YER)</Label>
-                  <Slider
-                    defaultValue={priceRange}
+                  <RangeSlider
                     min={10000}
                     max={200000}
                     step={5000}
@@ -255,13 +288,39 @@ const ListingsPage = () => {
                     <span>{priceRange[0].toLocaleString()} YER</span>
                     <span>{priceRange[1].toLocaleString()} YER</span>
                   </div>
-                  <Button 
-                    size="sm" 
-                    className="mt-2 w-full"
-                    onClick={() => setShowPriceSlider(false)}
-                  >
-                    تم
-                  </Button>
+                  <div className="flex gap-2 mt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1"
+                      onClick={() => setPriceRange([10000, 200000])}
+                    >
+                      إعادة تعيين
+                    </Button>
+                    <Button 
+                      size="sm" 
+                      className="flex-1 bg-blue-600 hover:bg-blue-700"
+                      onClick={() => {
+                        // Only set price filters if not default values
+                        if (priceRange[0] !== 10000 || priceRange[1] !== 200000) {
+                          setActiveFilters(prev => ({
+                            ...prev,
+                            priceMin: priceRange[0],
+                            priceMax: priceRange[1],
+                          }));
+                        } else {
+                          // Remove price filters if they're default values
+                          const newFilters = {...activeFilters};
+                          delete newFilters.priceMin;
+                          delete newFilters.priceMax;
+                          setActiveFilters(newFilters);
+                        }
+                        setShowPriceSlider(false);
+                      }}
+                    >
+                      تم
+                    </Button>
+                  </div>
                 </div>
               )}
             </div>
@@ -281,7 +340,7 @@ const ListingsPage = () => {
           </div>
 
           {/* Active Filters Display */}
-          {Object.keys(activeFilters).length > 0 && (
+          {countActiveFilters() > 0 && (
             <div className="mt-4 flex flex-wrap gap-2">
               {activeFilters.location && (
                 <div className="flex items-center bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
@@ -301,7 +360,7 @@ const ListingsPage = () => {
                 </div>
               )}
               
-              {(activeFilters.priceMin || activeFilters.priceMax) && (
+              {isPriceFilterActive() && (
                 <div className="flex items-center bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
                   <span className="mr-1">
                     السعر: {activeFilters.priceMin?.toLocaleString()} - {activeFilters.priceMax?.toLocaleString()} YER
@@ -323,7 +382,7 @@ const ListingsPage = () => {
                 </div>
               )}
               
-              {Object.keys(activeFilters).length > 1 && (
+              {countActiveFilters() > 1 && (
                 <Button 
                   variant="outline" 
                   size="sm" 

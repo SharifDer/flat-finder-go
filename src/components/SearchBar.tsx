@@ -100,9 +100,8 @@ const SearchBar = ({ variant = 'hero' }: SearchBarProps) => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="apartment">شقة</SelectItem>
-              <SelectItem value="studio">استوديو</SelectItem>
+              <SelectItem value="studio">فلة</SelectItem>
               <SelectItem value="house">منزل</SelectItem>
-              <SelectItem value="condo">كوندو</SelectItem>
             </SelectContent>
           </Select>
         </div>
