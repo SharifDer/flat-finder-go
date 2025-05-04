@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import ApartmentCard from '@/components/ApartmentCard';
 import { apartments, Apartment } from '@/data/apartments';
 import { Button } from '@/components/ui/button';
-import { MapPin, X, SliderHorizontal, Search } from 'lucide-react';
+import { MapPin, X, SlidersHorizontal, Search } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -233,7 +233,7 @@ const ListingsPage = () => {
                 className="w-full md:w-[180px] justify-start"
                 onClick={() => setShowPriceSlider(!showPriceSlider)}
               >
-                <SliderHorizontal className="h-4 w-4 mr-1" />
+                <SlidersHorizontal className="h-4 w-4 mr-1" />
                 {priceRange[0] === 10000 && priceRange[1] === 200000 
                   ? "نطاق السعر" 
                   : `${priceRange[0].toLocaleString()} - ${priceRange[1].toLocaleString()} YER`}
