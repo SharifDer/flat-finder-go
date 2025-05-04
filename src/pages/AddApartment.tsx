@@ -159,12 +159,11 @@ const AddApartment = () => {
                       name="title"
                       render={({ field }) => (
                         <FormItem className="mb-4">
-                          <FormLabel>عنوان الإعلان</FormLabel>
+                          <FormLabel>عنوان الشقة</FormLabel>
                           <FormControl>
-                            <Input placeholder="مثال: شقة مميزة في حي الروضة قرب جامعة صنعاء" {...field} />
+                            <Input placeholder="شقة مميزة في حدة عند جسر المدينة" {...field} />
                           </FormControl>
                           <FormDescription>
-                            عنوان جذاب يصف شقتك ويذكر الموقع
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
@@ -186,7 +185,7 @@ const AddApartment = () => {
                               </FormControl>
                               <SelectContent>
                                 <SelectItem value="apartment">شقة</SelectItem>
-                                <SelectItem value="studio">استوديو</SelectItem>
+                                {/* <SelectItem value="studio">استوديو</SelectItem> */}
                                 <SelectItem value="house">منزل</SelectItem>
                                 <SelectItem value="villa">فيلا</SelectItem>
                               </SelectContent>
@@ -259,33 +258,6 @@ const AddApartment = () => {
                           </FormItem>
                         )}
                       />
-                      
-                      {/* <FormField
-                        control={form.control}
-                        name="floor"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>الطابق</FormLabel>
-                            <Select onValueChange={value => field.onChange(Number(value))} defaultValue={field.value.toString()}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="اختر الطابق" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="0">الطابق الأرضي</SelectItem>
-                                <SelectItem value="1">الطابق الأول</SelectItem>
-                                <SelectItem value="2">الطابق الثاني</SelectItem>
-                                <SelectItem value="3">الطابق الثالث</SelectItem>
-                                <SelectItem value="4">الطابق الرابع</SelectItem>
-                                <SelectItem value="5">الطابق الخامس</SelectItem>
-                                <SelectItem value="6">الطابق السادس</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      /> */}
                     </div>
                     
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
@@ -294,7 +266,7 @@ const AddApartment = () => {
                         name="bedrooms"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>غرف النوم</FormLabel>
+                            <FormLabel>عدد الغرف </FormLabel>
                             <Select onValueChange={value => field.onChange(Number(value))} defaultValue={field.value.toString()}>
                               <FormControl>
                                 <SelectTrigger>
@@ -302,7 +274,6 @@ const AddApartment = () => {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                <SelectItem value="0">استوديو</SelectItem>
                                 <SelectItem value="1">1</SelectItem>
                                 <SelectItem value="2">2</SelectItem>
                                 <SelectItem value="3">3</SelectItem>

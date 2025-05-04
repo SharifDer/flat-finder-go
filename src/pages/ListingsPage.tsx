@@ -75,7 +75,7 @@ const ListingsPage = () => {
     filtered = filtered.filter(apt => 
       apt.price >= priceRange[0] && apt.price <= priceRange[1]
     );
-    if (priceRange[0] !== 0 || priceRange[1] !== 5000) filtersApplied = true;
+    if (priceRange[0] !== 10000 || priceRange[1] !== 200000) filtersApplied = true;
 
     // Apply sorting
     switch(sortMode) {
@@ -95,7 +95,7 @@ const ListingsPage = () => {
 
   // Reset all filters
   const resetFilters = () => {
-    setPriceRange([0, 5000]);
+    setPriceRange([10000, 200000]);
     setSortMode('newest');
     setSelectedLocation('');
     setDisplayedApartments(apartments);
@@ -140,42 +140,41 @@ const ListingsPage = () => {
               >
                 نطاق السعر: ${priceRange[0]} - ${priceRange[1]}
               </Button>
-              
-              {showPriceSlider && (
-                <div className="absolute z-10 mt-2 p-4 bg-white rounded-md shadow-lg border w-64">
-                  <Slider
-                    min={0}
-                    max={5000}
-                    step={100}
-                    value={priceRange}
-                    onChange={(value) => setPriceRange(value)}
-                    className="mb-4"
-                    renderTrack={(props, state) => (
-                      <div
-                        {...props}
-                        className="h-2 bg-blue-200 rounded-full"
-                      />
-                    )}
-                    renderThumb={(props, state) => (
-                      <div
-                        {...props}
-                        className="h-4 w-4 bg-blue-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
-                      />
-                    )}
-                  />
-                  <div className="flex justify-between text-sm text-gray-600">
-                    <span>${priceRange[0]}</span>
-                    <span>${priceRange[1]}</span>
-                  </div>
-                  <Button 
-                    size="sm" 
-                    className="mt-2 w-full"
-                    onClick={() => setShowPriceSlider(false)}
-                  >
-                    تم
-                  </Button>
-                </div>
-              )}
+    {showPriceSlider && (
+  <div className="absolute z-10 mt-2 p-4 bg-white rounded-md shadow-lg border w-64">
+    <Slider
+      min={10000}
+      max={200000}
+      step={1000}
+      value={priceRange}
+      onChange={(value) => setPriceRange(value)}
+      className="mb-4"
+      renderTrack={(props, state) => (
+        <div
+          {...props}
+          className="h-2 bg-blue-200 rounded-full"
+        />
+      )}
+      renderThumb={(props, state) => (
+        <div
+          {...props}
+          className="h-4 w-4 bg-blue-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      )}
+    />
+    <div className="flex justify-between text-sm text-gray-600">
+      <span>${priceRange[0].toLocaleString()}</span>
+      <span>${priceRange[1].toLocaleString()}</span>
+    </div>
+    <Button 
+      size="sm" 
+      className="mt-2 w-full"
+      onClick={() => setShowPriceSlider(false)}
+    >
+      تم
+    </Button>
+  </div>
+)}
             </div>
 
             {/* Price Sorting Dropdown */}

@@ -57,8 +57,8 @@ const LandlordForm = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-3">
-                <Label htmlFor="price">السعر الشهري (دولار)</Label>
-                <Input id="price" type="number" placeholder="مثال: 200" required />
+                <Label htmlFor="price">السعر الشهري (ريال يمني)</Label>
+                <Input id="price" type="number" placeholder="مثال: 30000" required />
               </div>
               
               <div className="space-y-3">

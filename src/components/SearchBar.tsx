@@ -130,11 +130,12 @@ const SearchBar = ({ variant = 'hero' }: SearchBarProps) => {
               <SelectValue placeholder="أي سعر" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="0-50000">$0 - $50,000</SelectItem>
-              <SelectItem value="50000-100000">$50,000 - $100,000</SelectItem>
-              <SelectItem value="100000-200000">$100,000 - $200,000</SelectItem>
-              <SelectItem value="200000+">$200,000+</SelectItem>
-            </SelectContent>
+                <SelectItem value="10000-50000">$10,000 - $50,000</SelectItem>
+                <SelectItem value="50000-100000">$50,000 - $100,000</SelectItem>
+                <SelectItem value="100000-150000">$100,000 - $150,000</SelectItem>
+                <SelectItem value="150000-200000">$150,000 - $200,000</SelectItem>
+                <SelectItem value="200000+">$200,000+</SelectItem>
+</SelectContent>
           </Select>
         </div>
         
