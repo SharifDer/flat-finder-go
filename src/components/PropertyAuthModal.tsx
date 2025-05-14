@@ -81,7 +81,11 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
   };
 
   const handleUserTypeChange = (value: string) => {
-    setRegisterForm(prev => ({ ...prev, userType: value }));
+    // Fix: Add a type assertion to make sure value is treated as a UserType
+    setRegisterForm(prev => ({ 
+      ...prev, 
+      userType: value as 'renter' | 'landlord' | 'agency' | null 
+    }));
   };
 
   const handleLogin = (e: React.FormEvent) => {
@@ -119,7 +123,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
       setIsLoggedIn(true);
       // Fix: Convert the string to the proper UserType
       if (registerForm.userType) {
-        // Need to cast the string value to UserType
+        // Cast the string value to UserType
         const userTypeValue = registerForm.userType as 'renter' | 'landlord' | 'agency' | null;
         setUserType(userTypeValue);
       }
