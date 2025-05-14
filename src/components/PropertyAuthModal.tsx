@@ -117,8 +117,11 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
       registerSchema.parse(registerForm);
       // This data would go to the backend in a real app
       setIsLoggedIn(true);
+      // Fix: Convert the string to the proper UserType
       if (registerForm.userType) {
-        setUserType(registerForm.userType);
+        // Need to cast the string value to UserType
+        const userTypeValue = registerForm.userType as 'renter' | 'landlord' | 'agency' | null;
+        setUserType(userTypeValue);
       }
       toast({
         title: "تم إنشاء الحساب بنجاح",
@@ -265,9 +268,9 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
                     <SelectValue placeholder="اختر نوع المستخدم" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="individual">مالك عقار</SelectItem>
+                    <SelectItem value="landlord">مالك عقار</SelectItem>
                     <SelectItem value="agency">مكتب عقاري</SelectItem>
-                    <SelectItem value="tenant">باحث عن سكن</SelectItem>
+                    <SelectItem value="renter">باحث عن سكن</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
