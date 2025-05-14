@@ -33,8 +33,6 @@ const ApartmentDetail = () => {
   const { id } = useParams<{ id: string }>();
   
   // Find apartment data from the list
-  // In a real application, this would fetch data from the backend
-  // Expected data: Full apartment details including images, amenities, contact info, etc.
   const apartment = apartments.find(apt => apt.id === id);
   
   // Handle case when apartment is not found
@@ -44,12 +42,11 @@ const ApartmentDetail = () => {
         <Navbar />
         <div className="container-custom py-16 flex-grow flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Apartment Not Found</h1>
-            <p className="text-gray-600 mb-6">The apartment you're looking for doesn't exist or has been removed.</p>
+            <h1 className="text-2xl font-bold mb-4">العقار غير موجود</h1>
+            <p className="text-gray-600 mb-6">العقار الذي تبحث عنه غير موجود أو تمت إزالته</p>
             <Link to="/listings">
               <Button>
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Listings
+                العودة إلى قائمة العقارات <ArrowLeft className="mr-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
@@ -67,8 +64,7 @@ const ApartmentDetail = () => {
         {/* Back Navigation */}
         <div className="mb-6">
           <Link to="/listings" className="text-gray-600 hover:text-primary flex items-center">
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            Back to Listings
+            العودة إلى قائمة العقارات <ArrowLeft className="mr-2 h-4 w-4" />
           </Link>
         </div>
         
@@ -82,11 +78,11 @@ const ApartmentDetail = () => {
             </div>
           </div>
           <div className="mt-4 md:mt-0">
-            <div className="text-2xl font-bold text-primary mb-2">${apartment.price}/month</div>
+            <div className="text-2xl font-bold text-primary mb-2">{apartment.price} ريال يمني/شهر</div>
             <div className="flex space-x-2">
               <Button className="flex items-center">
                 <Phone className="h-4 w-4 mr-2" />
-                Contact Owner
+                اتصل بالمالك
               </Button>
               <Button variant="outline" size="icon">
                 <Heart className="h-5 w-5" />
@@ -104,7 +100,7 @@ const ApartmentDetail = () => {
                   <div className="h-[400px] md:h-[500px] w-full overflow-hidden rounded-lg">
                     <img
                       src={image}
-                      alt={`${apartment.title} - Image ${index + 1}`}
+                      alt={`${apartment.title} - صورة ${index + 1}`}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -122,25 +118,25 @@ const ApartmentDetail = () => {
           <div className="lg:col-span-2 space-y-8">
             {/* Overview Section */}
             <div>
-              <h2 className="text-xl font-bold mb-4">Overview</h2>
+              <h2 className="text-xl font-bold mb-4">نظرة عامة</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 <div className="bg-blue-50 p-4 rounded-lg text-center">
-                  <div className="text-gray-600 text-sm">Bedrooms</div>
+                  <div className="text-gray-600 text-sm">غرف النوم</div>
                   <div className="font-bold text-lg">
-                    {apartment.bedrooms === 0 ? 'Studio' : apartment.bedrooms}
+                    {apartment.bedrooms === 0 ? 'استديو' : apartment.bedrooms}
                   </div>
                 </div>
                 <div className="bg-blue-50 p-4 rounded-lg text-center">
-                  <div className="text-gray-600 text-sm">Bathrooms</div>
+                  <div className="text-gray-600 text-sm">دورات المياه</div>
                   <div className="font-bold text-lg">{apartment.bathrooms}</div>
                 </div>
                 <div className="bg-blue-50 p-4 rounded-lg text-center">
-                  <div className="text-gray-600 text-sm">Area</div>
-                  <div className="font-bold text-lg">{apartment.area} sq ft</div>
+                  <div className="text-gray-600 text-sm">المساحة</div>
+                  <div className="font-bold text-lg">{apartment.area} متر مربع</div>
                 </div>
                 <div className="bg-blue-50 p-4 rounded-lg text-center">
-                  <div className="text-gray-600 text-sm">Available</div>
-                  <div className="font-bold text-lg">{apartment.available ? 'Yes' : 'No'}</div>
+                  <div className="text-gray-600 text-sm">متاح</div>
+                  <div className="font-bold text-lg">{apartment.available ? 'نعم' : 'لا'}</div>
                 </div>
               </div>
               <p className="text-gray-700 leading-relaxed">{apartment.description}</p>
@@ -150,11 +146,11 @@ const ApartmentDetail = () => {
             
             {/* Features Section */}
             <div>
-              <h2 className="text-xl font-bold mb-4">Apartment Features</h2>
+              <h2 className="text-xl font-bold mb-4">مميزات العقار</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {apartment.features.map((feature, index) => (
                   <div key={index} className="flex items-center">
-                    <div className="h-2 w-2 bg-primary rounded-full mr-2"></div>
+                    <div className="h-2 w-2 bg-primary rounded-full ml-2"></div>
                     <span>{feature}</span>
                   </div>
                 ))}
@@ -165,11 +161,11 @@ const ApartmentDetail = () => {
             
             {/* Amenities Section */}
             <div>
-              <h2 className="text-xl font-bold mb-4">Building Amenities</h2>
+              <h2 className="text-xl font-bold mb-4">مرافق المبنى</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {apartment.amenities.map((amenity, index) => (
                   <div key={index} className="flex items-center">
-                    <div className="h-2 w-2 bg-primary rounded-full mr-2"></div>
+                    <div className="h-2 w-2 bg-primary rounded-full ml-2"></div>
                     <span>{amenity}</span>
                   </div>
                 ))}
@@ -180,26 +176,26 @@ const ApartmentDetail = () => {
             
             {/* Additional Info Section */}
             <div>
-              <h2 className="text-xl font-bold mb-4">Additional Information</h2>
+              <h2 className="text-xl font-bold mb-4">معلومات إضافية</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-center">
                   <Badge variant="outline" className={apartment.petFriendly ? "bg-green-50" : "bg-red-50"}>
-                    {apartment.petFriendly ? 'Pet Friendly' : 'No Pets Allowed'}
+                    {apartment.petFriendly ? 'يسمح بالحيوانات الأليفة' : 'لا يسمح بالحيوانات الأليفة'}
                   </Badge>
                 </div>
                 <div className="flex items-center">
                   <Badge variant="outline" className={apartment.furnished ? "bg-green-50" : ""}>
-                    {apartment.furnished ? 'Furnished' : 'Unfurnished'}
+                    {apartment.furnished ? 'مفروش' : 'غير مفروش'}
                   </Badge>
                 </div>
                 <div className="flex items-center">
                   <Badge variant="outline" className={apartment.parkingIncluded ? "bg-green-50" : ""}>
-                    {apartment.parkingIncluded ? 'Parking Included' : 'No Parking'}
+                    {apartment.parkingIncluded ? 'يتوفر موقف سيارات' : 'لا يتوفر موقف سيارات'}
                   </Badge>
                 </div>
                 <div className="flex items-center">
                   <Badge variant="outline" className={apartment.utilitiesIncluded ? "bg-green-50" : ""}>
-                    {apartment.utilitiesIncluded ? 'Utilities Included' : 'Utilities Not Included'}
+                    {apartment.utilitiesIncluded ? 'الخدمات مشمولة' : 'الخدمات غير مشمولة'}
                   </Badge>
                 </div>
               </div>
@@ -211,19 +207,19 @@ const ApartmentDetail = () => {
             {/* Contact Card */}
             <Card>
               <CardHeader>
-                <CardTitle>Contact Information</CardTitle>
-                <CardDescription>Reach out directly to the property owner</CardDescription>
+                <CardTitle>معلومات الاتصال</CardTitle>
+                <CardDescription>تواصل مباشرة مع مالك العقار</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <div className="font-medium">Owner</div>
+                  <div className="font-medium">المالك</div>
                   <div className="text-gray-700">{apartment.contactName}</div>
                 </div>
                 
                 <div>
-                  <div className="font-medium">Phone</div>
+                  <div className="font-medium">رقم الهاتف</div>
                   <div className="flex items-center">
-                    <Phone className="h-4 w-4 text-primary mr-2" />
+                    <Phone className="h-4 w-4 text-primary ml-2" />
                     <a href={`tel:${apartment.contactPhone}`} className="text-primary hover:underline">
                       {apartment.contactPhone}
                     </a>
@@ -231,42 +227,42 @@ const ApartmentDetail = () => {
                 </div>
                 
                 <div>
-                  <div className="font-medium">Email</div>
+                  <div className="font-medium">البريد الإلكتروني</div>
                   <div className="flex items-center">
-                    <Mail className="h-4 w-4 text-primary mr-2" />
+                    <Mail className="h-4 w-4 text-primary ml-2" />
                     <a href={`mailto:${apartment.contactEmail}`} className="text-primary hover:underline">
                       {apartment.contactEmail}
                     </a>
                   </div>
                 </div>
                 
-                <Button className="w-full">Send Message</Button>
+                <Button className="w-full">إرسال رسالة</Button>
               </CardContent>
             </Card>
             
             {/* Availability Card */}
             <Card>
               <CardHeader>
-                <CardTitle>Availability</CardTitle>
+                <CardTitle>الإتاحة</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <div className="font-medium">Status</div>
+                  <div className="font-medium">الحالة</div>
                   <div className="text-green-600 font-medium">
-                    {apartment.available ? 'Available Now' : 'Not Available'}
+                    {apartment.available ? 'متاح الآن' : 'غير متاح'}
                   </div>
                 </div>
                 
                 <div>
-                  <div className="font-medium">Available From</div>
+                  <div className="font-medium">متاح من تاريخ</div>
                   <div className="flex items-center">
-                    <Calendar className="h-4 w-4 text-gray-600 mr-2" />
+                    <Calendar className="h-4 w-4 text-gray-600 ml-2" />
                     <span>{apartment.dateAvailable}</span>
                   </div>
                 </div>
                 
                 <Button variant="outline" className="w-full">
-                  Schedule a Viewing
+                  جدولة موعد للمعاينة
                 </Button>
               </CardContent>
             </Card>

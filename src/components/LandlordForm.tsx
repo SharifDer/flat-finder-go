@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,33 +7,36 @@ import { Textarea } from "@/components/ui/textarea";
 import { useUserPreference } from '@/contexts/UserPreferenceContext';
 import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
+import PropertyAuthModal from "./PropertyAuthModal";
 
 const LandlordForm = () => {
   const { isLoggedIn, userType } = useUserPreference();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  
+  // Show auth modal if user is not logged in
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setShowAuthModal(true);
+    }
+  }, [isLoggedIn]);
   
   // Set the title based on the user type
   const isAgency = userType === 'agency';
-  const formTitle = isAgency ? "أضف عقارات مكتبك للإيجار" : "أضف شقتك للإيجار";
+  const formTitle = isAgency ? "أضف عقارات مكتبك للإيجار" : "أضف عقارك للإيجار";
   const formDescription = isAgency 
     ? "أضف تفاصيل العقارات لمكتبك هنا ليتم عرضها للباحثين عن سكن في صنعاء" 
-    : "أضف تفاصيل شقتك هنا ليتم عرضها للباحثين عن سكن في صنعاء";
+    : "أضف تفاصيل عقارك هنا ليتم عرضه للباحثين عن سكن في صنعاء";
   const submitButtonText = isLoggedIn 
-    ? (isAgency ? "إضافة العقارات" : "إضافة الشقة") 
+    ? (isAgency ? "إضافة العقارات" : "إضافة العقار") 
     : "تسجيل الدخول لإضافة عقارات";
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!isLoggedIn) {
-      toast({
-        title: "يرجى تسجيل الدخول",
-        description: "يجب عليك تسجيل الدخول أو إنشاء حساب لإضافة عقارات",
-        variant: "destructive",
-      });
-      // Redirect to login page
-      navigate("/login");
+      setShowAuthModal(true);
       return;
     }
     
@@ -43,9 +46,23 @@ const LandlordForm = () => {
       description: "سيتم مراجعة طلبك ونشره قريبًا",
     });
   };
+
+  const handleAuthSuccess = () => {
+    // After successful login or registration, the form can be submitted
+    toast({
+      title: "يمكنك الآن إضافة عقارك",
+      description: "الرجاء ملء النموذج بالمعلومات المطلوبة",
+    });
+  };
   
   return (
     <section className="py-12 bg-white">
+      <PropertyAuthModal 
+        open={showAuthModal} 
+        onOpenChange={setShowAuthModal} 
+        onSuccess={handleAuthSuccess} 
+      />
+      
       <div className="container-custom">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">{formTitle}</h2>
@@ -55,7 +72,7 @@ const LandlordForm = () => {
           
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-3">
-              <Label htmlFor="title">عنوان الإعلان</Label>
+              <Label htmlFor="title">عنوان العقار</Label>
               <Input id="title" placeholder="مثال: شقة مفروشة في حدة" required />
             </div>
             

@@ -78,40 +78,52 @@
   .btn-outline {
     @apply border border-gray-300 px-6 py-2 rounded-md hover:bg-gray-50 transition-colors;
   }
+}
 
-  /* RTL Support */
-  .rtl {
-    direction: rtl;
-    text-align: right;
-  }
-  
-  /* Right-to-left utilities */
-  .rtl-space-x-reverse {
-    --tw-space-x-reverse: 1;
-  }
-  
-  .rtl .mr-1 {
-    margin-right: 0;
-    margin-left: 0.25rem;
-  }
-  
-  .rtl .mr-2 {
-    margin-right: 0;
-    margin-left: 0.5rem;
-  }
-  
-  .rtl .mr-4 {
-    margin-right: 0;
-    margin-left: 1rem;
-  }
-  
-  .rtl .ml-1 {
-    margin-left: 0;
-    margin-right: 0.25rem;
-  }
-  
-  .rtl .ml-2 {
-    margin-left: 0;
-    margin-right: 0.5rem;
-  }
+/* RTL Support */
+[dir="rtl"] .ml-1, [dir="rtl"] .ml-2, [dir="rtl"] .ml-3, [dir="rtl"] .ml-4 {
+  margin-left: 0;
+}
+
+[dir="rtl"] .ml-1 {
+  margin-right: 0.25rem;
+}
+
+[dir="rtl"] .ml-2 {
+  margin-right: 0.5rem;
+}
+
+[dir="rtl"] .ml-3 {
+  margin-right: 0.75rem;
+}
+
+[dir="rtl"] .ml-4 {
+  margin-right: 1rem;
+}
+
+[dir="rtl"] .mr-1, [dir="rtl"] .mr-2, [dir="rtl"] .mr-3, [dir="rtl"] .mr-4 {
+  margin-right: 0;
+}
+
+[dir="rtl"] .mr-1 {
+  margin-left: 0.25rem;
+}
+
+[dir="rtl"] .mr-2 {
+  margin-left: 0.5rem;
+}
+
+[dir="rtl"] .mr-3 {
+  margin-left: 0.75rem;
+}
+
+[dir="rtl"] .mr-4 {
+  margin-left: 1rem;
+}
+
+/* Fix icon alignments in RTL */
+[dir="rtl"] .flex.items-center svg + span,
+[dir="rtl"] .flex.items-center span + svg {
+  margin-left: 0.5rem;
+  margin-right: 0;
 }
