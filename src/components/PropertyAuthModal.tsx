@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useUserPreference } from '@/contexts/UserPreferenceContext';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { z } from "zod";
 
@@ -49,7 +49,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
     phone: "",
     password: "",
     confirmPassword: "",
-    userType: userType || "individual",
+    userType: userType || "landlord",
   });
 
   // Form state for login

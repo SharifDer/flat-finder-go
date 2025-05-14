@@ -127,3 +127,27 @@
   margin-left: 0.5rem;
   margin-right: 0;
 }
+
+/* RTL specific enhancements */
+[dir="rtl"] .space-x-2:not(.rtl\:space-x-reverse) > * + * {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+[dir="rtl"] .space-x-2.rtl\:space-x-reverse > * + * {
+  --tw-space-x-reverse: 1;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+/* Fix carousel arrows direction */
+[dir="rtl"] .carousel-prev {
+  left: auto;
+  right: 4px;
+}
+
+[dir="rtl"] .carousel-next {
+  right: auto;
+  left: 4px;
+}

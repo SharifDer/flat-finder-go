@@ -73,15 +73,15 @@ const ApartmentDetail = () => {
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{apartment.title}</h1>
             <div className="flex items-center text-gray-600">
-              <MapPin className="h-4 w-4 mr-1" />
+              <MapPin className="h-4 w-4 ml-1" />
               <span>{apartment.location}</span>
             </div>
           </div>
           <div className="mt-4 md:mt-0">
             <div className="text-2xl font-bold text-primary mb-2">{apartment.price} ريال يمني/شهر</div>
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 rtl:space-x-reverse">
               <Button className="flex items-center">
-                <Phone className="h-4 w-4 mr-2" />
+                <Phone className="h-4 w-4 ml-2" />
                 اتصل بالمالك
               </Button>
               <Button variant="outline" size="icon">
@@ -107,15 +107,81 @@ const ApartmentDetail = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-4" />
-            <CarouselNext className="right-4" />
+            <CarouselPrevious className="right-4" />
+            <CarouselNext className="left-4" />
           </Carousel>
         </div>
         
         {/* Main Content - Apartment Details and Contact Info */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Right Column - Contact and Availability */}
+          <div className="space-y-6 order-2 lg:order-1">
+            {/* Contact Card */}
+            <Card>
+              <CardHeader>
+                <CardTitle>معلومات الاتصال</CardTitle>
+                <CardDescription>تواصل مباشرة مع مالك العقار</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <div className="font-medium">المالك</div>
+                  <div className="text-gray-700">{apartment.contactName}</div>
+                </div>
+                
+                <div>
+                  <div className="font-medium">رقم الهاتف</div>
+                  <div className="flex items-center">
+                    <Phone className="h-4 w-4 text-primary ml-2" />
+                    <a href={`tel:${apartment.contactPhone}`} className="text-primary hover:underline">
+                      {apartment.contactPhone}
+                    </a>
+                  </div>
+                </div>
+                
+                <div>
+                  <div className="font-medium">البريد الإلكتروني</div>
+                  <div className="flex items-center">
+                    <Mail className="h-4 w-4 text-primary ml-2" />
+                    <a href={`mailto:${apartment.contactEmail}`} className="text-primary hover:underline">
+                      {apartment.contactEmail}
+                    </a>
+                  </div>
+                </div>
+                
+                <Button className="w-full">إرسال رسالة</Button>
+              </CardContent>
+            </Card>
+            
+            {/* Availability Card */}
+            <Card>
+              <CardHeader>
+                <CardTitle>الإتاحة</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <div className="font-medium">الحالة</div>
+                  <div className="text-green-600 font-medium">
+                    {apartment.available ? 'متاح الآن' : 'غير متاح'}
+                  </div>
+                </div>
+                
+                <div>
+                  <div className="font-medium">متاح من تاريخ</div>
+                  <div className="flex items-center">
+                    <Calendar className="h-4 w-4 text-gray-600 ml-2" />
+                    <span>{apartment.dateAvailable}</span>
+                  </div>
+                </div>
+                
+                <Button variant="outline" className="w-full">
+                  جدولة موعد للمعاينة
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+          
           {/* Left Column - Apartment Details */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-8 order-1 lg:order-2">
             {/* Overview Section */}
             <div>
               <h2 className="text-xl font-bold mb-4">نظرة عامة</h2>
@@ -200,72 +266,6 @@ const ApartmentDetail = () => {
                 </div>
               </div>
             </div>
-          </div>
-          
-          {/* Right Column - Contact and Availability */}
-          <div className="space-y-6">
-            {/* Contact Card */}
-            <Card>
-              <CardHeader>
-                <CardTitle>معلومات الاتصال</CardTitle>
-                <CardDescription>تواصل مباشرة مع مالك العقار</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <div className="font-medium">المالك</div>
-                  <div className="text-gray-700">{apartment.contactName}</div>
-                </div>
-                
-                <div>
-                  <div className="font-medium">رقم الهاتف</div>
-                  <div className="flex items-center">
-                    <Phone className="h-4 w-4 text-primary ml-2" />
-                    <a href={`tel:${apartment.contactPhone}`} className="text-primary hover:underline">
-                      {apartment.contactPhone}
-                    </a>
-                  </div>
-                </div>
-                
-                <div>
-                  <div className="font-medium">البريد الإلكتروني</div>
-                  <div className="flex items-center">
-                    <Mail className="h-4 w-4 text-primary ml-2" />
-                    <a href={`mailto:${apartment.contactEmail}`} className="text-primary hover:underline">
-                      {apartment.contactEmail}
-                    </a>
-                  </div>
-                </div>
-                
-                <Button className="w-full">إرسال رسالة</Button>
-              </CardContent>
-            </Card>
-            
-            {/* Availability Card */}
-            <Card>
-              <CardHeader>
-                <CardTitle>الإتاحة</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <div className="font-medium">الحالة</div>
-                  <div className="text-green-600 font-medium">
-                    {apartment.available ? 'متاح الآن' : 'غير متاح'}
-                  </div>
-                </div>
-                
-                <div>
-                  <div className="font-medium">متاح من تاريخ</div>
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 text-gray-600 ml-2" />
-                    <span>{apartment.dateAvailable}</span>
-                  </div>
-                </div>
-                
-                <Button variant="outline" className="w-full">
-                  جدولة موعد للمعاينة
-                </Button>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
