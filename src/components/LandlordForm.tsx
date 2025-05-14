@@ -9,9 +9,19 @@ import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
 
 const LandlordForm = () => {
-  const { isLoggedIn } = useUserPreference();
+  const { isLoggedIn, userType } = useUserPreference();
   const { toast } = useToast();
   const navigate = useNavigate();
+  
+  // Set the title based on the user type
+  const isAgency = userType === 'agency';
+  const formTitle = isAgency ? "أضف عقارات مكتبك للإيجار" : "أضف شقتك للإيجار";
+  const formDescription = isAgency 
+    ? "أضف تفاصيل العقارات لمكتبك هنا ليتم عرضها للباحثين عن سكن في صنعاء" 
+    : "أضف تفاصيل شقتك هنا ليتم عرضها للباحثين عن سكن في صنعاء";
+  const submitButtonText = isLoggedIn 
+    ? (isAgency ? "إضافة العقارات" : "إضافة الشقة") 
+    : "تسجيل الدخول لإضافة عقارات";
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +29,7 @@ const LandlordForm = () => {
     if (!isLoggedIn) {
       toast({
         title: "يرجى تسجيل الدخول",
-        description: "يجب عليك تسجيل الدخول أو إنشاء حساب لإضافة شقة",
+        description: "يجب عليك تسجيل الدخول أو إنشاء حساب لإضافة عقارات",
         variant: "destructive",
       });
       // Redirect to login page
@@ -28,7 +38,6 @@ const LandlordForm = () => {
     }
     
     // This data goes to the backend
-    // البيانات المتوقعة: عنوان الشقة، الوصف، السعر، عدد الغرف، الصور، معلومات المالك، إلخ
     toast({
       title: "تم إرسال البيانات",
       description: "سيتم مراجعة طلبك ونشره قريبًا",
@@ -39,9 +48,9 @@ const LandlordForm = () => {
     <section className="py-12 bg-white">
       <div className="container-custom">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">أضف شقتك للإيجار</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">{formTitle}</h2>
           <p className="text-center text-gray-600 mb-8">
-            أضف تفاصيل شقتك هنا ليتم عرضها للباحثين عن سكن في صنعاء
+            {formDescription}
           </p>
           
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -68,23 +77,30 @@ const LandlordForm = () => {
             </div>
             
             <div className="space-y-3">
-              <Label htmlFor="description">وصف الشقة</Label>
+              <Label htmlFor="description">وصف العقار</Label>
               <Textarea 
                 id="description" 
-                placeholder="أضف وصفاً تفصيلياً للشقة" 
+                placeholder="أضف وصفاً تفصيلياً للعقار" 
                 rows={5}
                 required 
               />
             </div>
             
             <div className="space-y-3">
-              <Label htmlFor="images">صور الشقة</Label>
+              <Label htmlFor="images">صور العقار</Label>
               <Input id="images" type="file" multiple accept="image/*" className="cursor-pointer" />
               <p className="text-xs text-gray-500">يمكنك إضافة حتى 10 صور. الصيغ المدعومة: JPG, PNG</p>
             </div>
             
+            {isAgency && (
+              <div className="space-y-3">
+                <Label htmlFor="agencyName">اسم المكتب العقاري</Label>
+                <Input id="agencyName" placeholder="مثال: مكتب النجاح العقاري" required />
+              </div>
+            )}
+            
             <Button type="submit" className="w-full">
-              {isLoggedIn ? "إضافة الشقة" : "تسجيل الدخول لإضافة الشقة"}
+              {submitButtonText}
             </Button>
           </form>
         </div>

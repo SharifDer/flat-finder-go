@@ -29,7 +29,7 @@ const ApartmentCard = ({ apartment }: ApartmentCardProps) => {
           <Heart className="h-5 w-5 text-gray-600" />
         </Button>
         <div className="absolute bottom-0 left-0 bg-primary text-white px-3 py-1 text-sm font-medium">
-          ${apartment.price}/month
+          {apartment.price.toLocaleString()} ريال يمني
         </div>
       </div>
       <CardContent className="p-4">
@@ -41,13 +41,13 @@ const ApartmentCard = ({ apartment }: ApartmentCardProps) => {
           <span className="text-sm">{apartment.location}</span>
         </div>
         <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
-          <div><span className="font-medium">{apartment.bedrooms}</span> bd</div>
-          <div><span className="font-medium">{apartment.bathrooms}</span> ba</div>
-          <div><span className="font-medium">{apartment.area}</span> sqft</div>
+          <div><span className="font-medium">{apartment.bedrooms}</span> غرفة</div>
+          <div><span className="font-medium">{apartment.bathrooms}</span> حمام</div>
+          <div><span className="font-medium">{apartment.area}</span> م²</div>
         </div>
         <Link to={`/apartment/${apartment.id}`}>
           <Button variant="outline" size="sm" className="w-full">
-            View Details
+            عرض التفاصيل
           </Button>
         </Link>
       </CardContent>

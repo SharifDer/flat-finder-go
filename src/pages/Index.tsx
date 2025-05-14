@@ -1,3 +1,4 @@
+
 /**
  * This file is for the Homepage
  * Displays the main landing page with search functionality and featured listings
@@ -29,11 +30,10 @@ const Index = () => {
       <section className="bg-blue-50 py-16 md:py-24">
         <div className="container-custom text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            ابحث عن شقتك المثالية في <span className="text-primary">صنعاء</span>
+            المرجع الرسمي للعقارات في <span className="text-primary">صنعاء</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10">
-            تواصل بشكل مباشر مع مالكي العقارات. لا وسطاء، لا رسوم إضافية.
-            {/* فقط بحث بسيط عن الشقق استنادًا إلى الموقع. */}
+            سواء كنت مالك عقار، مكتب عقاري، أو تبحث عن شقة، سكن صنعاء هو منصتك الموثوقة لتأجير وإيجاد الشقق بطريقة سهلة وسريعة.
           </p>
           
           <SearchBar variant="hero" />
@@ -49,7 +49,7 @@ const Index = () => {
             </div>
             <div className="flex items-center">
               <Heart className="h-5 w-5 text-primary mr-2" />
-              <span className="text-gray-700">تواصل مباشر مع المالكين</span>
+              <span className="text-gray-700">تواصل مباشر وموثوق</span>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ const Index = () => {
       </section>
       
       {/* Dynamic Content based on User Type */}
-      {userType === 'landlord' && <LandlordForm />}
+      {(userType === 'landlord' || userType === 'agency') && <LandlordForm />}
       
       {/* How It Works */}
       <section className="py-16 bg-gray-50">
@@ -94,7 +94,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">البحث عن العقارات</h3>
               <p className="text-gray-600">
-                .ابحث بسهولة عن الشقق بناءً على الموقع المفضل لديك والميزانية
+                ابحث بسهولة عن الشقق بناءً على الموقع المفضل لديك والميزانية بالريال اليمني.
               </p>
             </div>
             
@@ -104,7 +104,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">الاتصال المباشر</h3>
               <p className="text-gray-600">
-                تواصل مباشرة مع مالكي العقارات، بدون وسطاء أو رسوم إضافية.
+                تواصل مباشرة مع مالكي العقارات والمكاتب العقارية الموثوقة.
               </p>
             </div>
             
@@ -140,11 +140,11 @@ const Index = () => {
       <section className="bg-primary py-16">
         <div className="container-custom text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-            هل أنت مستعد للعثور على شقتك المثالية في صنعاء؟
+            انضم إلى المنصة الموثوقة للعقارات في صنعاء
           </h2>
           <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8">
-            انضم إلى الآلاف من المستأجرين السعداء الذين وجدوا منازلهم من خلال موقع FindMyFlat.
-            ابدأ بتصفح الشقق المتاحة اليوم!
+            سواء كنت مالك عقار، مكتب عقاري، أو تبحث عن شقة للإيجار، سكن صنعاء هو الخيار الأمثل لك.
+            ابدأ الآن!
           </p>
           <Link to="/listings">
             <Button size="lg" variant="secondary" className="mx-auto">

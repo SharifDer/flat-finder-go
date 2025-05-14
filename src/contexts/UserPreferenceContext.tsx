@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-type UserType = 'renter' | 'landlord' | null;
+type UserType = 'renter' | 'landlord' | 'agency' | null;
 
 type UserPreferenceContextType = {
   userType: UserType;

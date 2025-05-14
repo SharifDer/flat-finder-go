@@ -2,13 +2,13 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Home, Plus } from "lucide-react";
+import { Home, Plus, Building } from "lucide-react";
 import { useUserPreference } from '@/contexts/UserPreferenceContext';
 
 const UserOnboardingModal = () => {
   const { isFirstVisit, setIsFirstVisit, setUserType } = useUserPreference();
   
-  const handleSelection = (type: 'renter' | 'landlord') => {
+  const handleSelection = (type: 'renter' | 'landlord' | 'agency') => {
     setUserType(type);
     setIsFirstVisit(false);
   };
@@ -22,7 +22,7 @@ const UserOnboardingModal = () => {
             حدد الخيار الذي يناسب احتياجاتك
           </DialogDescription>
         </DialogHeader>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
           <Button
             variant="outline"
             className="p-6 h-auto flex flex-col items-center space-y-3 border-2 hover:border-primary"
@@ -41,6 +41,16 @@ const UserOnboardingModal = () => {
             <Plus className="h-12 w-12 text-primary" />
             <span className="text-lg font-medium">أملك شقة للإيجار</span>
             <span className="text-sm text-gray-500">إضافة شقة جديدة للإيجار</span>
+          </Button>
+
+          <Button
+            variant="outline"
+            className="p-6 h-auto flex flex-col items-center space-y-3 border-2 hover:border-primary"
+            onClick={() => handleSelection('agency')}
+          >
+            <Building className="h-12 w-12 text-primary" />
+            <span className="text-lg font-medium">أنا مكتب عقاري</span>
+            <span className="text-sm text-gray-500">إدارة عدة عقارات للإيجار</span>
           </Button>
         </div>
       </DialogContent>
