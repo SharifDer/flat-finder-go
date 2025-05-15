@@ -17,40 +17,40 @@ const UserOnboardingModal = () => {
     <Dialog open={isFirstVisit} onOpenChange={setIsFirstVisit}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-center mb-2">مرحباً بك في سكن صنعاء</DialogTitle>
+          <DialogTitle className="text-center mb-2 text-xl md:text-2xl">مرحباً بك في سكن صنعاء</DialogTitle>
           <DialogDescription className="text-center">
             حدد الخيار الذي يناسب احتياجاتك
           </DialogDescription>
         </DialogHeader>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+        <div className="grid grid-cols-1 gap-4 pt-4">
           <Button
             variant="outline"
-            className="p-6 h-auto flex flex-col items-center space-y-3 border-2 hover:border-primary"
+            className="p-4 h-auto flex flex-col items-center space-y-2 border-2 hover:border-primary"
             onClick={() => handleSelection('renter')}
           >
-            <Home className="h-12 w-12 text-primary" />
-            <span className="text-lg font-medium">أبحث عن شقة</span>
-            <span className="text-sm text-gray-500">تصفح الشقق المتاحة للإيجار</span>
+            <Home className="h-8 w-8 text-primary" />
+            <span className="text-base font-medium">أبحث عن شقة</span>
+            <p className="text-xs text-gray-500 max-w-[180px]">تصفح الشقق المتاحة للإيجار</p>
           </Button>
           
           <Button
             variant="outline"
-            className="p-6 h-auto flex flex-col items-center space-y-3 border-2 hover:border-primary"
+            className="p-4 h-auto flex flex-col items-center space-y-2 border-2 hover:border-primary"
             onClick={() => handleSelection('landlord')}
           >
-            <Plus className="h-12 w-12 text-primary" />
-            <span className="text-lg font-medium">أملك شقة للإيجار</span>
-            <span className="text-sm text-gray-500">إضافة شقة جديدة للإيجار</span>
+            <Plus className="h-8 w-8 text-primary" />
+            <span className="text-base font-medium">أملك شقة للإيجار</span>
+            <p className="text-xs text-gray-500 max-w-[180px]">إضافة شقة جديدة للإيجار</p>
           </Button>
 
           <Button
             variant="outline"
-            className="p-6 h-auto flex flex-col items-center space-y-3 border-2 hover:border-primary"
+            className="p-4 h-auto flex flex-col items-center space-y-2 border-2 hover:border-primary"
             onClick={() => handleSelection('agency')}
           >
-            <Building className="h-12 w-12 text-primary" />
-            <span className="text-lg font-medium">أنا مكتب عقاري</span>
-            <span className="text-sm text-gray-500">إدارة عدة عقارات للإيجار</span>
+            <Building className="h-8 w-8 text-primary" />
+            <span className="text-base font-medium">أنا مكتب عقاري</span>
+            <p className="text-xs text-gray-500 max-w-[180px]">إدارة عدة عقارات للإيجار</p>
           </Button>
         </div>
       </DialogContent>
