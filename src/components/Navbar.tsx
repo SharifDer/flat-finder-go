@@ -1,14 +1,16 @@
+
 /**
  * This file is for the navbar
  * Displays the main landing page with search functionality and featured listings
  */import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, User, Heart, Plus, Menu, X, ChevronDown, Search, Building, FileText, CalendarDays } from 'lucide-react';
+import { Home, User, Heart, Plus, Menu, X, ChevronDown, Search, Building, FileText, CalendarDays, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useUserPreference } from '@/contexts/UserPreferenceContext';
 import { useIsMobile } from '@/hooks/use-mobile';
-import AuthModal from './AuthModal';
+import { toast } from "@/hooks/use-toast";
+import PropertyAuthModal from './PropertyAuthModal';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -34,13 +36,27 @@ const Navbar = () => {
   
   const handleLogout = () => {
     setIsLoggedIn(false);
+    toast({
+      title: "تم تسجيل الخروج بنجاح",
+      description: "نتمنى أن نراك قريبًا",
+    });
+    setMobileMenuOpen(false);
+  };
+  
+  const handleAuthSuccess = () => {
+    // When user successfully logs in or registers
+    toast({
+      title: "تم تسجيل الدخول بنجاح",
+      description: "مرحبًا بك في سكن صنعاء",
+    });
+    setAuthModalOpen(false);
   };
   
   return (
     <nav className="bg-white shadow-sm py-4 rtl relative z-10">
       <div className="container-custom">
         {/* Authentication Modal */}
-        <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
+        <PropertyAuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} onSuccess={handleAuthSuccess} />
         
         {/* Top Bar - Login/Register Links */}
         {/* 
@@ -209,6 +225,11 @@ const Navbar = () => {
                       </Link>
                     </DropdownMenuItem>
                   )}
+                  <DropdownMenuItem onClick={handleLogout} className="text-red-500 hover:text-red-600 hover:bg-red-50">
+                    <div className="flex items-center gap-2">
+                      <LogOut className="h-4 w-4" /> تسجيل الخروج
+                    </div>
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
@@ -306,10 +327,7 @@ const Navbar = () => {
                 </Link>
                 
                 <button
-                  onClick={() => {
-                    handleLogout();
-                    setMobileMenuOpen(false);
-                  }}
+                  onClick={handleLogout}
                   className="block w-full text-right py-2 text-red-500 hover:text-red-700"
                 >
                   تسجيل الخروج
