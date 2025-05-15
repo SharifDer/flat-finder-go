@@ -16,7 +16,17 @@ import { useToast } from "@/hooks/use-toast";
 const Favorites = () => {
   // For demo purposes, let's use some random apartments as favorites
   const [favoriteApartments, setFavoriteApartments] = useState(
-    apartments.slice(0, 3) // First 3 apartments as favorites for demo
+    apartments.slice(0, 3).map(apt => ({
+      ...apt,
+      title: apt.id === 1 ? "شقة فسيحة بغرفتين في وسط المدينة" :
+             apt.id === 2 ? "استوديو عصري مع إطلالة على المدينة" :
+             "شقة مريحة بغرفة نوم واحدة قرب الجامعة",
+      location: apt.id === 1 ? "شارع الزهراء، صنعاء" :
+                apt.id === 2 ? "شارع الستين، صنعاء" :
+                "شارع الجامعة، صنعاء",
+      price: apt.id === 1 ? 80000 : apt.id === 2 ? 60000 : 45000,
+      description: "شقة جميلة ومؤثثة بالكامل في موقع مميز"
+    }))
   );
   
   const { toast } = useToast();
@@ -25,23 +35,23 @@ const Favorites = () => {
     setFavoriteApartments(favoriteApartments.filter(apt => apt.id !== apartmentId));
     
     toast({
-      title: "Removed from favorites",
-      description: "The apartment was successfully removed from your favorites",
+      title: "تمت الإزالة من المفضلة",
+      description: "تم إزالة الشقة بنجاح من قائمة المفضلة",
     });
   };
   
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col rtl">
       <Navbar />
       
       {/* Hero Section */}
       <section className="bg-blue-50 py-10">
         <div className="container-custom text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            My Favorite Apartments
+            الشقق المفضلة
           </h1>
           <p className="text-lg text-gray-600">
-            Apartments you've saved for later review
+            الشقق التي قمت بحفظها للمراجعة لاحقًا
           </p>
         </div>
       </section>
@@ -57,11 +67,11 @@ const Favorites = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="absolute top-4 right-4 bg-white hover:bg-red-50 text-red-500 hover:text-red-600 border-red-200"
+                    className="absolute top-4 left-4 bg-white hover:bg-red-50 text-red-500 hover:text-red-600 border-red-200"
                     onClick={() => removeFromFavorites(apartment.id)}
                   >
-                    <Heart className="h-4 w-4 mr-1 fill-current" />
-                    Remove from favorites
+                    <Heart className="h-4 w-4 ml-1 fill-current" />
+                    إزالة من المفضلة
                   </Button>
                 </div>
               ))}
@@ -71,12 +81,12 @@ const Favorites = () => {
               <div className="bg-blue-50 rounded-full p-6 inline-flex mb-4">
                 <Heart className="h-12 w-12 text-gray-400" />
               </div>
-              <h2 className="text-2xl font-semibold mb-2">No favorite apartments</h2>
+              <h2 className="text-2xl font-semibold mb-2">لا توجد شقق مفضلة</h2>
               <p className="text-gray-600 mb-6 max-w-md mx-auto">
-                You haven't added any apartments to your favorites yet. Browse apartments and add your favorites.
+                لم تقم بإضافة أية شقق إلى المفضلة بعد. تصفح الشقق وأضف ما يعجبك إلى المفضلة.
               </p>
               <Button asChild>
-                <a href="/listings">Browse available apartments</a>
+                <a href="/listings">تصفح الشقق المتاحة</a>
               </Button>
             </div>
           )}
@@ -87,12 +97,20 @@ const Favorites = () => {
       {favoriteApartments.length > 0 && (
         <section className="py-12 bg-gray-50">
           <div className="container-custom">
-            <h2 className="text-2xl font-bold mb-8">You might also like</h2>
+            <h2 className="text-2xl font-bold mb-8">قد يعجبك أيضاً</h2>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {apartments.slice(3, 6).map(apartment => (
-                <ApartmentCard key={apartment.id} apartment={apartment} />
-              ))}
+              {apartments.slice(3, 6).map(apartment => {
+                // Convert English data to Arabic for demonstration
+                const arabicApartment = {
+                  ...apartment,
+                  title: "شقة فاخرة في موقع مميز",
+                  location: "شارع التحرير، صنعاء",
+                  price: 55000,
+                  description: "شقة راقية بتشطيبات حديثة وتصميم عصري"
+                };
+                return <ApartmentCard key={apartment.id} apartment={arabicApartment} />;
+              })}
             </div>
           </div>
         </section>
@@ -103,16 +121,16 @@ const Favorites = () => {
         <div className="container-custom">
           <div className="bg-blue-50 rounded-lg p-6 md:p-8">
             <div className="flex flex-col md:flex-row items-start md:items-center">
-              <div className="bg-blue-100 rounded-full p-3 mb-4 md:mb-0 md:mr-6">
+              <div className="md:mr-6 bg-blue-100 rounded-full p-3 mb-4 md:mb-0">
                 <AlertCircle className="h-6 w-6 text-primary" />
               </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Tips for Apartment Hunting</h3>
+              <div className="text-right">
+                <h3 className="text-lg font-semibold mb-2">نصائح للبحث عن شقة</h3>
                 <ul className="list-disc list-inside space-y-1 text-gray-600">
-                  <li>Compare several options before making a final decision</li>
-                  <li>Check the location and its proximity to essential services</li>
-                  <li>Make sure to visit the apartment and verify all facilities</li>
-                  <li>Read the contract terms carefully before signing</li>
+                  <li>قارن بين عدة خيارات قبل اتخاذ القرار النهائي</li>
+                  <li>تحقق من الموقع وقربه من الخدمات الأساسية</li>
+                  <li>تأكد من زيارة الشقة والتحقق من جميع المرافق</li>
+                  <li>اقرأ شروط العقد بعناية قبل التوقيع</li>
                 </ul>
               </div>
             </div>

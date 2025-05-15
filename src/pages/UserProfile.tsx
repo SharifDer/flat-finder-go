@@ -9,29 +9,30 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Heart, User, Settings, HomeIcon, Bell, Calendar, Check, Clock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { toast } from "@/components/ui/use-toast";
 
 const UserProfile = () => {
   const [activeTab, setActiveTab] = useState("profile");
   const [savedApartments, setSavedApartments] = useState([
     {
       id: 1,
-      title: "Spacious 2 Bed in Downtown",
-      address: "123 Main St, Apartment 4B",
-      price: 1800,
+      title: "شقة فسيحة بغرفتين في وسط المدينة",
+      address: "شارع الزهراء، الحي الغربي، عمارة 4، شقة ب",
+      price: 80000,
       image: "/placeholder.svg",
     },
     {
       id: 2,
-      title: "Modern Studio with City Views",
-      address: "456 Park Ave, Apartment 7C",
-      price: 1200,
+      title: "استوديو عصري مع إطلالة على المدينة",
+      address: "شارع الستين، برج النور، الدور 7، شقة ج",
+      price: 60000,
       image: "/placeholder.svg",
     },
     {
       id: 3,
-      title: "Cozy 1 Bed near Campus",
-      address: "789 College Blvd, Apartment 2A",
-      price: 950,
+      title: "شقة مريحة بغرفة نوم واحدة قرب الجامعة",
+      address: "شارع الجامعة، عمارة الطلاب، الدور 2، شقة أ",
+      price: 45000,
       image: "/placeholder.svg",
     },
   ]);
@@ -39,21 +40,21 @@ const UserProfile = () => {
   const [applications, setApplications] = useState([
     {
       id: 1,
-      propertyName: "Luxury High-Rise Apartment",
+      propertyName: "شقة فاخرة في برج سكني",
       date: "2023-04-15",
       status: "approved",
       image: "/placeholder.svg",
     },
     {
       id: 2,
-      propertyName: "Downtown Loft Space",
+      propertyName: "شقة في وسط المدينة",
       date: "2023-04-10",
       status: "pending",
       image: "/placeholder.svg",
     },
     {
       id: 3,
-      propertyName: "Riverside Apartment Complex",
+      propertyName: "شقة قرب نهر الملكة أروى",
       date: "2023-03-28",
       status: "declined",
       image: "/placeholder.svg",
@@ -63,27 +64,27 @@ const UserProfile = () => {
   const [upcomingViewings, setUpcomingViewings] = useState([
     {
       id: 1,
-      propertyName: "Studio Apartment",
+      propertyName: "شقة استوديو",
       date: "2023-05-12",
-      time: "10:00 AM",
-      address: "123 Main St, Apt 4B",
+      time: "10:00 صباحًا",
+      address: "شارع الستين، عمارة النور، شقة 4ب",
       image: "/placeholder.svg",
     },
     {
       id: 2,
-      propertyName: "2 Bed Townhouse",
+      propertyName: "شقة بغرفتين",
       date: "2023-05-15",
-      time: "2:30 PM",
-      address: "456 Oak Ave, Unit C",
+      time: "2:30 مساءً",
+      address: "شارع الزبيري، مجمع البستان، وحدة ج",
       image: "/placeholder.svg",
     },
   ]);
 
   // User data state
   const [userData, setUserData] = useState({
-    name: "Alex Johnson",
-    email: "alex.johnson@example.com",
-    phone: "(555) 123-4567",
+    name: "أحمد علي",
+    email: "ahmed.ali@example.com",
+    phone: "777 123456",
     profileImage: "/placeholder.svg",
     notificationSettings: {
       email: true,
@@ -114,6 +115,10 @@ const UserProfile = () => {
     // In a real app, this would send data to an API
     console.log("Profile data saved:", userData);
     // Show success message
+    toast({
+      title: "تم حفظ البيانات",
+      description: "تم تحديث بياناتك الشخصية بنجاح",
+    });
   };
 
   // Handle tab changes
@@ -126,32 +131,32 @@ const UserProfile = () => {
       case "approved":
         return (
           <Badge className="bg-green-500 hover:bg-green-600">
-            <Check className="h-3 w-3 mr-1" /> Approved
+            <Check className="h-3 w-3 ml-1" /> تمت الموافقة
           </Badge>
         );
       case "pending":
         return (
           <Badge className="bg-yellow-500 hover:bg-yellow-600">
-            <Clock className="h-3 w-3 mr-1" /> Pending
+            <Clock className="h-3 w-3 ml-1" /> قيد المراجعة
           </Badge>
         );
       case "declined":
         return (
           <Badge className="bg-red-500 hover:bg-red-600">
-            <Clock className="h-3 w-3 mr-1" /> Declined
+            <Clock className="h-3 w-3 ml-1" /> مرفوض
           </Badge>
         );
       default:
         return (
           <Badge className="bg-gray-500 hover:bg-gray-600">
-            <Clock className="h-3 w-3 mr-1" /> Unknown
+            <Clock className="h-3 w-3 ml-1" /> غير معروف
           </Badge>
         );
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gray-50 rtl">
       <Navbar />
       
       <main className="flex-grow py-8">
@@ -165,7 +170,7 @@ const UserProfile = () => {
                     <div className="w-24 h-24 rounded-full overflow-hidden mb-3 bg-gray-100">
                       <img 
                         src={userData.profileImage} 
-                        alt="Profile" 
+                        alt="الصورة الشخصية" 
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -185,36 +190,36 @@ const UserProfile = () => {
                         value="profile"
                         className="justify-start px-3 data-[state=active]:bg-muted w-full"
                       >
-                        <User className="h-4 w-4 mr-2" />
-                        Profile
+                        <User className="h-4 w-4 ml-2" />
+                        الملف الشخصي
                       </TabsTrigger>
                       <TabsTrigger
                         value="saved"
                         className="justify-start px-3 data-[state=active]:bg-muted w-full"
                       >
-                        <Heart className="h-4 w-4 mr-2" />
-                        Saved Apartments
+                        <Heart className="h-4 w-4 ml-2" />
+                        الشقق المحفوظة
                       </TabsTrigger>
                       <TabsTrigger
                         value="applications"
                         className="justify-start px-3 data-[state=active]:bg-muted w-full"
                       >
-                        <HomeIcon className="h-4 w-4 mr-2" />
-                        Applications
+                        <HomeIcon className="h-4 w-4 ml-2" />
+                        الطلبات
                       </TabsTrigger>
                       <TabsTrigger
                         value="viewings"
                         className="justify-start px-3 data-[state=active]:bg-muted w-full"
                       >
-                        <Calendar className="h-4 w-4 mr-2" />
-                        Viewings
+                        <Calendar className="h-4 w-4 ml-2" />
+                        المعاينات
                       </TabsTrigger>
                       <TabsTrigger
                         value="settings"
                         className="justify-start px-3 data-[state=active]:bg-muted w-full"
                       >
-                        <Settings className="h-4 w-4 mr-2" />
-                        Settings
+                        <Settings className="h-4 w-4 ml-2" />
+                        الإعدادات
                       </TabsTrigger>
                     </TabsList>
                   </Tabs>
@@ -228,41 +233,44 @@ const UserProfile = () => {
                 <TabsContent value="profile" className="mt-0">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Personal Information</CardTitle>
+                      <CardTitle>المعلومات الشخصية</CardTitle>
                       <CardDescription>
-                        Update your account details and information.
+                        تحديث بيانات حسابك ومعلوماتك الشخصية.
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <form className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="space-y-2">
-                            <Label htmlFor="name">Full Name</Label>
+                            <Label htmlFor="name">الاسم الكامل</Label>
                             <Input
                               id="name"
                               name="name"
                               value={userData.name}
                               onChange={handleInputChange}
+                              className="text-right"
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
+                            <Label htmlFor="email">البريد الإلكتروني</Label>
                             <Input
                               id="email"
                               name="email"
                               type="email"
                               value={userData.email}
                               onChange={handleInputChange}
+                              className="text-right"
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="phone">Phone</Label>
+                            <Label htmlFor="phone">رقم الهاتف</Label>
                             <Input
                               id="phone"
                               name="phone"
                               type="tel"
                               value={userData.phone}
                               onChange={handleInputChange}
+                              className="text-right"
                             />
                           </div>
                         </div>
@@ -271,7 +279,7 @@ const UserProfile = () => {
                           onClick={handleSaveProfile}
                           className="mt-4"
                         >
-                          Save Changes
+                          حفظ التغييرات
                         </Button>
                       </form>
                     </CardContent>
@@ -282,29 +290,29 @@ const UserProfile = () => {
                   {/* Saved apartments content */}
                   <Card>
                     <CardHeader>
-                      <CardTitle>Saved Apartments</CardTitle>
+                      <CardTitle>الشقق المحفوظة</CardTitle>
                       <CardDescription>
-                        Your bookmarked properties for future reference.
+                        العقارات التي قمت بحفظها للرجوع إليها لاحقًا.
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="grid grid-cols-1 gap-4">
                         {savedApartments.map((apt) => (
                           <div key={apt.id} className="flex border rounded-lg overflow-hidden">
+                            <div className="p-4 flex items-start">
+                              <Button size="sm" variant="outline">عرض</Button>
+                            </div>
+                            <div className="flex-1 p-4 text-right">
+                              <h3 className="font-medium">{apt.title}</h3>
+                              <p className="text-sm text-muted-foreground">{apt.address}</p>
+                              <p className="text-sm font-medium mt-1">{apt.price} ريال/شهريًا</p>
+                            </div>
                             <div className="w-24 h-24 bg-gray-100">
                               <img 
                                 src={apt.image} 
                                 alt={apt.title} 
                                 className="w-full h-full object-cover"
                               />
-                            </div>
-                            <div className="flex-1 p-4">
-                              <h3 className="font-medium">{apt.title}</h3>
-                              <p className="text-sm text-muted-foreground">{apt.address}</p>
-                              <p className="text-sm font-medium mt-1">${apt.price}/month</p>
-                            </div>
-                            <div className="p-4 flex items-start">
-                              <Button size="sm" variant="outline">View</Button>
                             </div>
                           </div>
                         ))}
@@ -316,31 +324,31 @@ const UserProfile = () => {
                 <TabsContent value="applications" className="mt-0">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Applications</CardTitle>
+                      <CardTitle>طلبات الاستئجار</CardTitle>
                       <CardDescription>
-                        Track your apartment applications.
+                        متابعة طلبات استئجار الشقق الخاصة بك.
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="grid grid-cols-1 gap-4">
                         {applications.map((app) => (
                           <div key={app.id} className="flex border rounded-lg overflow-hidden">
+                            <div className="p-4 flex items-start">
+                              <Button size="sm" variant="outline">التفاصيل</Button>
+                            </div>
+                            <div className="flex-1 p-4 text-right">
+                              <h3 className="font-medium">{app.propertyName}</h3>
+                              <p className="text-sm text-muted-foreground">تاريخ الطلب: {app.date}</p>
+                              <div className="mt-2">
+                                {getStatusBadge(app.status)}
+                              </div>
+                            </div>
                             <div className="w-24 h-24 bg-gray-100">
                               <img 
                                 src={app.image} 
                                 alt={app.propertyName} 
                                 className="w-full h-full object-cover"
                               />
-                            </div>
-                            <div className="flex-1 p-4">
-                              <h3 className="font-medium">{app.propertyName}</h3>
-                              <p className="text-sm text-muted-foreground">Applied on {app.date}</p>
-                              <div className="mt-2">
-                                {getStatusBadge(app.status)}
-                              </div>
-                            </div>
-                            <div className="p-4 flex items-start">
-                              <Button size="sm" variant="outline">Details</Button>
                             </div>
                           </div>
                         ))}
@@ -352,31 +360,31 @@ const UserProfile = () => {
                 <TabsContent value="viewings" className="mt-0">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Upcoming Viewings</CardTitle>
+                      <CardTitle>مواعيد المعاينة</CardTitle>
                       <CardDescription>
-                        Your scheduled apartment viewings.
+                        مواعيد معاينة الشقق المجدولة.
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="grid grid-cols-1 gap-4">
                         {upcomingViewings.map((viewing) => (
                           <div key={viewing.id} className="flex border rounded-lg overflow-hidden">
+                            <div className="p-4 flex items-start">
+                              <Button size="sm" variant="outline">المسار</Button>
+                            </div>
+                            <div className="flex-1 p-4 text-right">
+                              <h3 className="font-medium">{viewing.propertyName}</h3>
+                              <p className="text-sm text-muted-foreground">{viewing.address}</p>
+                              <p className="text-sm mt-1">
+                                {viewing.date} في {viewing.time}
+                              </p>
+                            </div>
                             <div className="w-24 h-24 bg-gray-100">
                               <img 
                                 src={viewing.image} 
                                 alt={viewing.propertyName} 
                                 className="w-full h-full object-cover"
                               />
-                            </div>
-                            <div className="flex-1 p-4">
-                              <h3 className="font-medium">{viewing.propertyName}</h3>
-                              <p className="text-sm text-muted-foreground">{viewing.address}</p>
-                              <p className="text-sm mt-1">
-                                {viewing.date} at {viewing.time}
-                              </p>
-                            </div>
-                            <div className="p-4 flex items-start">
-                              <Button size="sm" variant="outline">Directions</Button>
                             </div>
                           </div>
                         ))}
@@ -388,59 +396,59 @@ const UserProfile = () => {
                 <TabsContent value="settings" className="mt-0">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Notification Settings</CardTitle>
+                      <CardTitle>إعدادات الإشعارات</CardTitle>
                       <CardDescription>
-                        Configure how you receive updates and alerts.
+                        ضبط كيفية استلام التحديثات والإشعارات.
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
-                          <div>
-                            <h3 className="font-medium">Email Notifications</h3>
-                            <p className="text-sm text-muted-foreground">
-                              Receive updates about new listings and application status
-                            </p>
-                          </div>
                           <Button 
                             variant={userData.notificationSettings.email ? "default" : "outline"}
                             onClick={() => handleNotificationChange("email")}
-                            className="ml-auto"
+                            className="mr-auto"
                           >
-                            {userData.notificationSettings.email ? "Enabled" : "Disabled"}
+                            {userData.notificationSettings.email ? "مفعّل" : "معطّل"}
                           </Button>
+                          <div className="text-right">
+                            <h3 className="font-medium">إشعارات البريد الإلكتروني</h3>
+                            <p className="text-sm text-muted-foreground">
+                              استلام تحديثات حول العروض الجديدة وحالة الطلبات
+                            </p>
+                          </div>
                         </div>
                         
                         <div className="flex items-center justify-between">
-                          <div>
-                            <h3 className="font-medium">SMS Notifications</h3>
-                            <p className="text-sm text-muted-foreground">
-                              Get text alerts for urgent updates
-                            </p>
-                          </div>
                           <Button 
                             variant={userData.notificationSettings.sms ? "default" : "outline"}
                             onClick={() => handleNotificationChange("sms")}
-                            className="ml-auto"
+                            className="mr-auto"
                           >
-                            {userData.notificationSettings.sms ? "Enabled" : "Disabled"}
+                            {userData.notificationSettings.sms ? "مفعّل" : "معطّل"}
                           </Button>
+                          <div className="text-right">
+                            <h3 className="font-medium">إشعارات الرسائل القصيرة</h3>
+                            <p className="text-sm text-muted-foreground">
+                              استلام تنبيهات عبر الرسائل القصيرة للتحديثات العاجلة
+                            </p>
+                          </div>
                         </div>
                         
                         <div className="flex items-center justify-between">
-                          <div>
-                            <h3 className="font-medium">In-App Notifications</h3>
-                            <p className="text-sm text-muted-foreground">
-                              Receive notifications when using the app
-                            </p>
-                          </div>
                           <Button 
                             variant={userData.notificationSettings.app ? "default" : "outline"}
                             onClick={() => handleNotificationChange("app")}
-                            className="ml-auto"
+                            className="mr-auto"
                           >
-                            {userData.notificationSettings.app ? "Enabled" : "Disabled"}
+                            {userData.notificationSettings.app ? "مفعّل" : "معطّل"}
                           </Button>
+                          <div className="text-right">
+                            <h3 className="font-medium">إشعارات التطبيق</h3>
+                            <p className="text-sm text-muted-foreground">
+                              استلام إشعارات عند استخدام التطبيق
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </CardContent>
