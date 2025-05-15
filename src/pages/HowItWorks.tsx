@@ -101,35 +101,35 @@ const HowItWorks = () => {
         </div>
       </section>
       
-      {/* FAQ Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container-custom">
-          <h2 className="text-3xl font-bold text-center mb-12">الأسئلة الشائعة</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="font-semibold text-xl mb-3">هل هناك رسوم لاستخدام الموقع؟</h3>
-              <p className="text-gray-600">لا، استخدام الموقع مجاني تماماً للباحثين عن سكن وأصحاب العقارات.</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="font-semibold text-xl mb-3">كيف أتحقق من مصداقية الإعلانات؟</h3>
-              <p className="text-gray-600">نقوم بمراجعة الإعلانات قبل نشرها ونشجع المستخدمين على الإبلاغ عن أي محتوى مشبوه.</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="font-semibold text-xl mb-3">هل يمكنني تعديل إعلاني بعد نشره؟</h3>
-              <p className="text-gray-600">نعم، يمكنك تعديل أو حذف إعلانك في أي وقت من خلال حسابك الشخصي.</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="font-semibold text-xl mb-3">هل أحتاج لحساب لمشاهدة الإعلانات؟</h3>
-              <p className="text-gray-600">لا، يمكنك تصفح الإعلانات دون تسجيل، لكن التسجيل ضروري للتواصل مع الملاك أو لإضافة إعلان.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+   {/* FAQ Section */}
+<section className="py-16 bg-gray-50">
+  <div className="container-custom">
+    <h2 className="text-3xl font-bold text-center mb-12">الأسئلة الشائعة</h2>
+    
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="bg-white p-6 rounded-lg shadow-sm">
+        <h3 className="font-semibold text-xl mb-3">هل هناك رسوم لاستخدام الموقع؟</h3>
+        <p className="text-gray-600">لا، استخدام الموقع مجاني تماماً للباحثين عن سكن وأصحاب العقارات.</p>
+      </div>
       
+      <div className="bg-white p-6 rounded-lg shadow-sm">
+        <h3 className="font-semibold text-xl mb-3">كيف أتحقق من مصداقية بيانات العقار؟</h3>
+        <p className="text-gray-600">نقوم بمراجعة بيانات العقارات قبل نشرها ونشجع المستخدمين على الإبلاغ عن أي محتوى مشبوه.</p>
+      </div>
+      
+      <div className="bg-white p-6 rounded-lg shadow-sm">
+        <h3 className="font-semibold text-xl mb-3">هل يمكنني تعديل بيانات العقار بعد نشرها؟</h3>
+        <p className="text-gray-600">نعم، يمكنك تعديل أو حذف بيانات عقارك في أي وقت من خلال حسابك الشخصي.</p>
+      </div>
+      
+      <div className="bg-white p-6 rounded-lg shadow-sm">
+        <h3 className="font-semibold text-xl mb-3">هل أحتاج لحساب لمشاهدة بيانات العقارات؟</h3>
+        <p className="text-gray-600"> لا، يمكنك تصفح بيانات العقارات دون تسجيل، لكن التسجيل ضروري لإضافة عقار.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
       <Footer />
     </div>
   );
