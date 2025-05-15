@@ -38,7 +38,7 @@ const ApartmentDetail = () => {
   // Handle case when apartment is not found
   if (!apartment) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col" dir="rtl">
         <Navbar />
         <div className="container-custom py-16 flex-grow flex items-center justify-center">
           <div className="text-center">
@@ -46,7 +46,7 @@ const ApartmentDetail = () => {
             <p className="text-gray-600 mb-6">العقار الذي تبحث عنه غير موجود أو تمت إزالته</p>
             <Link to="/listings">
               <Button>
-                العودة إلى قائمة العقارات <ArrowLeft className="mr-2 h-4 w-4" />
+                <ArrowLeft className="ml-2 h-4 w-4" /> العودة إلى قائمة العقارات
               </Button>
             </Link>
           </div>
@@ -57,14 +57,14 @@ const ApartmentDetail = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" dir="rtl">
       <Navbar />
       
       <div className="container-custom py-8">
         {/* Back Navigation */}
         <div className="mb-6">
           <Link to="/listings" className="text-gray-600 hover:text-primary flex items-center">
-            العودة إلى قائمة العقارات <ArrowLeft className="mr-2 h-4 w-4" />
+            <ArrowLeft className="ml-2 h-4 w-4" /> العودة إلى قائمة العقارات
           </Link>
         </div>
         
@@ -107,8 +107,8 @@ const ApartmentDetail = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="right-4" />
-            <CarouselNext className="left-4" />
+            <CarouselPrevious className="right-4 left-auto" />
+            <CarouselNext className="left-4 right-auto" />
           </Carousel>
         </div>
         
