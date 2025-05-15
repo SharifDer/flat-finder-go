@@ -11,6 +11,7 @@ const UserOnboardingModal = () => {
   const handleSelection = (type: 'renter' | 'landlord' | 'agency') => {
     setUserType(type);
     setIsFirstVisit(false);
+    // No longer immediately showing auth modal for landlord/agency users
   };
 
   return (
@@ -28,9 +29,9 @@ const UserOnboardingModal = () => {
             className="p-4 h-auto flex flex-col items-center space-y-2 border-2 hover:border-primary"
             onClick={() => handleSelection('renter')}
           >
-            <Home className="h-8 w-8 text-primary" />
+            <Home className="h-6 w-6 text-primary" />
             <span className="text-base font-medium">أبحث عن شقة</span>
-            <p className="text-xs text-gray-500 max-w-[180px]">تصفح الشقق المتاحة للإيجار</p>
+            <p className="text-xs text-gray-500 max-w-[200px] mx-auto">تصفح الشقق المتاحة للإيجار</p>
           </Button>
           
           <Button
@@ -38,9 +39,9 @@ const UserOnboardingModal = () => {
             className="p-4 h-auto flex flex-col items-center space-y-2 border-2 hover:border-primary"
             onClick={() => handleSelection('landlord')}
           >
-            <Plus className="h-8 w-8 text-primary" />
+            <Plus className="h-6 w-6 text-primary" />
             <span className="text-base font-medium">أملك شقة للإيجار</span>
-            <p className="text-xs text-gray-500 max-w-[180px]">إضافة شقة جديدة للإيجار</p>
+            <p className="text-xs text-gray-500 max-w-[200px] mx-auto">إضافة شقة جديدة للإيجار</p>
           </Button>
 
           <Button
@@ -48,9 +49,9 @@ const UserOnboardingModal = () => {
             className="p-4 h-auto flex flex-col items-center space-y-2 border-2 hover:border-primary"
             onClick={() => handleSelection('agency')}
           >
-            <Building className="h-8 w-8 text-primary" />
+            <Building className="h-6 w-6 text-primary" />
             <span className="text-base font-medium">أنا مكتب عقاري</span>
-            <p className="text-xs text-gray-500 max-w-[180px]">إدارة عدة عقارات للإيجار</p>
+            <p className="text-xs text-gray-500 max-w-[200px] mx-auto">إدارة عدة عقارات للإيجار</p>
           </Button>
         </div>
       </DialogContent>

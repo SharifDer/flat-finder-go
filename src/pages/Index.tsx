@@ -1,4 +1,3 @@
-
 /**
  * This file is for the Homepage
  * Displays the main landing page with search functionality and featured listings
@@ -23,7 +22,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      {/* First-time user modal */}
+      {/* First-time user modal - Only shown on first visit */}
       <UserOnboardingModal />
       
       {/* Hero Section */}
@@ -77,7 +76,7 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Dynamic Content based on User Type */}
+      {/* Dynamic Content based on User Type - Show the form but WITHOUT auto-displaying auth */}
       {(userType === 'landlord' || userType === 'agency') && <LandlordForm />}
       
       {/* How It Works */}

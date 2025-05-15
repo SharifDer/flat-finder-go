@@ -156,7 +156,7 @@ const AddApartment = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      {/* Auth Modal */}
+      {/* Auth Modal - Only shown in AddApartment page */}
       <PropertyAuthModal 
         open={showAuthModal} 
         onOpenChange={setShowAuthModal}
