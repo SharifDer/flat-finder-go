@@ -5,7 +5,6 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Switch } from '@/components/ui/switch';
 import { 
   Select,
@@ -54,17 +53,10 @@ const formSchema = z.object({
   bathrooms: z.number({
     required_error: "يرجى تحديد عدد الحمامات",
   }),
-  floor: z.number({
-    required_error: "يرجى تحديد الطابق",
-  }),
   description: z.string().min(30, {
     message: "يرجى كتابة وصف مفصل للعقار لا يقل عن 30 حرف",
   }),
   status: z.boolean().default(true),
-  petFriendly: z.boolean().default(false),
-  furnished: z.boolean().default(false),
-  parkingIncluded: z.boolean().default(false),
-  utilitiesIncluded: z.boolean().default(false),
 });
 
 const AddApartment = () => {
@@ -90,13 +82,8 @@ const AddApartment = () => {
       price: 50000,
       bedrooms: 2,
       bathrooms: 1,
-      floor: 1,
       description: "",
       status: true,
-      petFriendly: false,
-      furnished: false,
-      parkingIncluded: false,
-      utilitiesIncluded: false,
     },
   });
   
@@ -276,7 +263,7 @@ const AddApartment = () => {
                         )}
                       />
                       
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-2 gap-4">
                         <FormField
                           control={form.control}
                           name="bedrooms"
@@ -325,33 +312,6 @@ const AddApartment = () => {
                             </FormItem>
                           )}
                         />
-                        
-                        <FormField
-                          control={form.control}
-                          name="floor"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>الطابق</FormLabel>
-                              <Select onValueChange={value => field.onChange(Number(value))} defaultValue={field.value.toString()}>
-                                <FormControl>
-                                  <SelectTrigger>
-                                    <SelectValue placeholder="الطابق" />
-                                  </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                  <SelectItem value="0">أرضي</SelectItem>
-                                  <SelectItem value="1">الأول</SelectItem>
-                                  <SelectItem value="2">الثاني</SelectItem>
-                                  <SelectItem value="3">الثالث</SelectItem>
-                                  <SelectItem value="4">الرابع</SelectItem>
-                                  <SelectItem value="5">الخامس</SelectItem>
-                                  <SelectItem value="6">سادس أو أعلى</SelectItem>
-                                </SelectContent>
-                              </Select>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
                       </div>
                     </div>
                     
@@ -372,90 +332,12 @@ const AddApartment = () => {
                               <Switch
                                 checked={field.value}
                                 onCheckedChange={field.onChange}
+                                className={field.value ? "bg-green-500 data-[state=checked]:bg-green-500 hover:bg-green-600" : "bg-red-500 data-[state=unchecked]:bg-red-500 hover:bg-red-600"}
                               />
                             </FormControl>
                           </FormItem>
                         )}
                       />
-                    </div>
-                    
-                    {/* Features */}
-                    <div className="md:col-span-2">
-                      <h2 className="text-xl font-semibold mb-4 text-primary">المميزات</h2>
-                      
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="furnished"
-                          render={({ field }) => (
-                            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rtl:space-x-reverse">
-                              <FormControl>
-                                <Checkbox
-                                  checked={field.value}
-                                  onCheckedChange={field.onChange}
-                                />
-                              </FormControl>
-                              <div className="space-y-1 leading-none mr-2">
-                                <FormLabel>مفروشة</FormLabel>
-                              </div>
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="petFriendly"
-                          render={({ field }) => (
-                            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rtl:space-x-reverse">
-                              <FormControl>
-                                <Checkbox
-                                  checked={field.value}
-                                  onCheckedChange={field.onChange}
-                                />
-                              </FormControl>
-                              <div className="space-y-1 leading-none mr-2">
-                                <FormLabel>يسمح بالحيوانات الأليفة</FormLabel>
-                              </div>
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="parkingIncluded"
-                          render={({ field }) => (
-                            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rtl:space-x-reverse">
-                              <FormControl>
-                                <Checkbox
-                                  checked={field.value}
-                                  onCheckedChange={field.onChange}
-                                />
-                              </FormControl>
-                              <div className="space-y-1 leading-none mr-2">
-                                <FormLabel>موقف سيارة</FormLabel>
-                              </div>
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="utilitiesIncluded"
-                          render={({ field }) => (
-                            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rtl:space-x-reverse">
-                              <FormControl>
-                                <Checkbox
-                                  checked={field.value}
-                                  onCheckedChange={field.onChange}
-                                />
-                              </FormControl>
-                              <div className="space-y-1 leading-none mr-2">
-                                <FormLabel>الخدمات مشمولة</FormLabel>
-                              </div>
-                            </FormItem>
-                          )}
-                        />
-                      </div>
                     </div>
                     
                     {/* Description */}

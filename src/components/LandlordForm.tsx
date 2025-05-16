@@ -71,17 +71,20 @@ const LandlordForm = () => {
             </div>
             
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="isAvailable">متاح للإيجار</Label>
+              <div className="flex flex-row items-center justify-between rounded-lg border p-4">
+                <div className="space-y-0.5">
+                  <Label htmlFor="isAvailable">حالة العقار</Label>
+                  <p className="text-sm text-gray-500">
+                    {isAvailable ? 'متاح للإيجار' : 'تم تأجيره بالفعل'}
+                  </p>
+                </div>
                 <Switch 
                   id="isAvailable" 
                   checked={isAvailable} 
-                  onCheckedChange={setIsAvailable} 
+                  onCheckedChange={setIsAvailable}
+                  className={isAvailable ? "bg-green-500 data-[state=checked]:bg-green-500 hover:bg-green-600" : "bg-red-500 data-[state=unchecked]:bg-red-500 hover:bg-red-600"}
                 />
               </div>
-              <p className="text-sm text-gray-500">
-                {isAvailable ? 'سيتم عرض العقار كمتاح للإيجار' : 'سيتم عرض العقار كمؤجر بالفعل'}
-              </p>
             </div>
             
             <div className="space-y-3">

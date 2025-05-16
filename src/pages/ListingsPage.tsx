@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -5,7 +6,7 @@ import Footer from '@/components/Footer';
 import ApartmentCard from '@/components/ApartmentCard';
 import { apartments, Apartment } from '@/data/apartments';
 import { Button } from '@/components/ui/button';
-import { MapPin, X, SlidersHorizontal, Search } from 'lucide-react';
+import { MapPin, X, SlidersHorizontal, Search, Home } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -13,6 +14,7 @@ import { Slider } from "@/components/ui/slider";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { RangeSlider } from "@/components/ui/range-slider";
 import { useRef } from 'react';
+import { Toggle } from "@/components/ui/toggle";
 
 const ListingsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,12 +27,14 @@ const ListingsPage = () => {
   const [priceRange, setPriceRange] = useState([10000, 200000]);
   const [selectedLocation, setSelectedLocation] = useState('');
   const [showPriceSlider, setShowPriceSlider] = useState(false);
+  const [statusFilter, setStatusFilter] = useState<string>('all');
   const [activeFilters, setActiveFilters] = useState<{
     location?: string;
     type?: string;
     priceMin?: number;
     priceMax?: number;
     sort?: string;
+    status?: string;
   }>({});
   const priceSliderRef = useRef<HTMLDivElement>(null);
 
@@ -114,6 +118,15 @@ const ListingsPage = () => {
         apt.type === activeFilters.type
       );
     }
+    
+    // Filter by status if provided
+    if (activeFilters.status) {
+      if (activeFilters.status === 'available') {
+        filtered = filtered.filter(apt => apt.available === true);
+      } else if (activeFilters.status === 'rented') {
+        filtered = filtered.filter(apt => apt.available === false);
+      }
+    }
 
     // Filter by price range
     if (activeFilters.priceMin || activeFilters.priceMax) {
@@ -173,6 +186,15 @@ const ListingsPage = () => {
       }));
     }
   };
+  
+  // Handle status filter change
+  const handleStatusFilterChange = (value: string) => {
+    setStatusFilter(value);
+    setActiveFilters(prev => ({
+      ...prev,
+      status: value,
+    }));
+  };
 
   // Remove filter
   const removeFilter = (filterType: string) => {
@@ -195,6 +217,10 @@ const ListingsPage = () => {
         delete newFilters.sort;
         setSortMode('newest');
         break;
+      case 'status':
+        delete newFilters.status;
+        setStatusFilter('all');
+        break;
     }
     
     setActiveFilters(newFilters);
@@ -210,6 +236,7 @@ const ListingsPage = () => {
     setPriceRange([10000, 200000]);
     setSortMode('newest');
     setSelectedLocation('');
+    setStatusFilter('all');
     setActiveFilters({});
     setShowPriceSlider(false);
 
@@ -253,6 +280,20 @@ const ListingsPage = () => {
                       {location}
                     </SelectItem>
                   ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Status Filter */}
+            <div className="w-full md:w-auto">
+              <Select onValueChange={handleStatusFilterChange} value={statusFilter}>
+                <SelectTrigger className="w-full md:w-[180px]">
+                  <SelectValue placeholder="حالة العقار" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">جميع العقارات</SelectItem>
+                  <SelectItem value="available">متاح للإيجار</SelectItem>
+                  <SelectItem value="rented">تم تأجيره</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -355,6 +396,17 @@ const ListingsPage = () => {
                 <div className="flex items-center bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
                   <span className="mr-1">النوع: {activeFilters.type}</span>
                   <Button variant="ghost" size="icon" className="h-5 w-5 p-0 ml-1" onClick={() => removeFilter('type')}>
+                    <X className="h-3 w-3" />
+                  </Button>
+                </div>
+              )}
+              
+              {activeFilters.status && (
+                <div className="flex items-center bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                  <span className="mr-1">
+                    الحالة: {activeFilters.status === 'available' ? 'متاح للإيجار' : 'تم تأجيره'}
+                  </span>
+                  <Button variant="ghost" size="icon" className="h-5 w-5 p-0 ml-1" onClick={() => removeFilter('status')}>
                     <X className="h-3 w-3" />
                   </Button>
                 </div>

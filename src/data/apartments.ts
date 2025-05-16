@@ -14,10 +14,6 @@ export interface Apartment {
   available: boolean; // This represents 'status' in the schema
   dateAvailable: string;
   type: string;
-  petFriendly: boolean;
-  furnished: boolean;
-  parkingIncluded: boolean;
-  utilitiesIncluded: boolean;
 }
 
 export const apartments: Apartment[] = [
@@ -39,10 +35,6 @@ export const apartments: Apartment[] = [
     contactPhone: '777 123 456',
     available: true,
     dateAvailable: '01-06-2024',
-    petFriendly: true,
-    furnished: false,
-    parkingIncluded: true,
-    utilitiesIncluded: false,
     type: 'شقة',
   },
   {
@@ -63,10 +55,6 @@ export const apartments: Apartment[] = [
     contactPhone: '734 987 654',
     available: true,
     dateAvailable: '15-05-2024',
-    petFriendly: false,
-    furnished: false,
-    parkingIncluded: false,
-    utilitiesIncluded: true,
     type: 'استديو',
   },
   {
@@ -87,10 +75,6 @@ export const apartments: Apartment[] = [
     contactPhone: '771 456 789',
     available: true,
     dateAvailable: '15-06-2024',
-    petFriendly: true,
-    furnished: false,
-    parkingIncluded: true,
-    utilitiesIncluded: false,
     type: 'شقة',
   },
   {
@@ -111,10 +95,6 @@ export const apartments: Apartment[] = [
     contactPhone: '713 234 567',
     available: true,
     dateAvailable: '01-05-2024',
-    petFriendly: true,
-    furnished: false,
-    parkingIncluded: false,
-    utilitiesIncluded: true,
     type: 'شقة',
   },
   {
@@ -135,10 +115,6 @@ export const apartments: Apartment[] = [
     contactPhone: '735 876 543',
     available: false,
     dateAvailable: '01-06-2024',
-    petFriendly: true,
-    furnished: false,
-    parkingIncluded: true,
-    utilitiesIncluded: false,
     type: 'منزل',
   },
   {
@@ -159,10 +135,6 @@ export const apartments: Apartment[] = [
     contactPhone: '711 345 678',
     available: false,
     dateAvailable: '01-05-2024',
-    petFriendly: false,
-    furnished: true,
-    parkingIncluded: false,
-    utilitiesIncluded: true,
     type: 'استديو',
   }
 ];
