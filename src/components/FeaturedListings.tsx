@@ -10,9 +10,9 @@ const FeaturedListings = () => {
     <section className="py-12 bg-gray-50">
       <div className="container-custom">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800">Featured Apartments</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800">الشقق المميزة</h2>
           <Link to="/listings">
-            <Button variant="outline">View All Apartments</Button>
+            <Button variant="outline">عرض جميع الشقق</Button>
           </Link>
         </div>
         

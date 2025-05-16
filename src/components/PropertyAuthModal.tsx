@@ -148,9 +148,9 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
   
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-w-[90%] p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="text-center text-xl mb-2">
+          <DialogTitle className="text-center text-lg sm:text-xl mb-2">
             {activeTab === 'login' ? 'تسجيل الدخول' : 'إنشاء حساب جديد'}
           </DialogTitle>
           <p className="text-center text-gray-600 text-sm">
@@ -167,7 +167,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
           <TabsContent value="login">
             <form onSubmit={handleLogin} className="space-y-4 pt-2">
               <div className="space-y-2">
-                <Label htmlFor="email">البريد الإلكتروني</Label>
+                <Label htmlFor="email" className="text-sm sm:text-base">البريد الإلكتروني</Label>
                 <Input 
                   id="email" 
                   name="email"
@@ -176,6 +176,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
                   value={loginForm.email}
                   onChange={handleLoginChange}
                   required 
+                  className="border-2 focus-visible:border-primary"
                 />
                 {loginErrors.email && (
                   <p className="text-destructive text-xs mt-1">{loginErrors.email}</p>
@@ -183,7 +184,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="password">كلمة المرور</Label>
+                <Label htmlFor="password" className="text-sm sm:text-base">كلمة المرور</Label>
                 <Input 
                   id="password" 
                   name="password"
@@ -191,13 +192,14 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
                   value={loginForm.password}
                   onChange={handleLoginChange}
                   required 
+                  className="border-2 focus-visible:border-primary"
                 />
                 {loginErrors.password && (
                   <p className="text-destructive text-xs mt-1">{loginErrors.password}</p>
                 )}
               </div>
               
-              <Button type="submit" className="w-full">تسجيل الدخول</Button>
+              <Button type="submit" className="w-full text-sm sm:text-base">تسجيل الدخول</Button>
               
               <p className="text-sm text-center text-gray-500">
                 ليس لديك حساب؟{" "}
@@ -215,7 +217,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
           <TabsContent value="register">
             <form onSubmit={handleRegister} className="space-y-4 pt-2">
               <div className="space-y-2">
-                <Label htmlFor="name">اسم المستخدم</Label>
+                <Label htmlFor="name" className="text-sm sm:text-base">اسم المستخدم</Label>
                 <Input 
                   id="name" 
                   name="name"
@@ -223,6 +225,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
                   value={registerForm.name}
                   onChange={handleRegisterChange}
                   required 
+                  className="border-2 focus-visible:border-primary"
                 />
                 {registerErrors.name && (
                   <p className="text-destructive text-xs mt-1">{registerErrors.name}</p>
@@ -230,7 +233,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="register-email">البريد الإلكتروني</Label>
+                <Label htmlFor="register-email" className="text-sm sm:text-base">البريد الإلكتروني</Label>
                 <Input 
                   id="register-email" 
                   name="email"
@@ -239,6 +242,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
                   value={registerForm.email}
                   onChange={handleRegisterChange}
                   required 
+                  className="border-2 focus-visible:border-primary"
                 />
                 {registerErrors.email && (
                   <p className="text-destructive text-xs mt-1">{registerErrors.email}</p>
@@ -246,7 +250,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="phone">رقم الهاتف</Label>
+                <Label htmlFor="phone" className="text-sm sm:text-base">رقم الهاتف</Label>
                 <Input 
                   id="phone" 
                   name="phone"
@@ -255,6 +259,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
                   value={registerForm.phone}
                   onChange={handleRegisterChange}
                   required 
+                  className="border-2 focus-visible:border-primary"
                 />
                 <p className="text-xs text-gray-500">يجب أن يبدأ بـ 7xx أو 01 أو 05 وطوله 9 أرقام</p>
                 {registerErrors.phone && (
@@ -263,12 +268,12 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="userType">نوع المستخدم</Label>
+                <Label htmlFor="userType" className="text-sm sm:text-base">نوع المستخدم</Label>
                 <Select 
                   value={registerForm.userType} 
                   onValueChange={handleUserTypeChange}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="border-2 focus-visible:border-primary">
                     <SelectValue placeholder="اختر نوع المستخدم" />
                   </SelectTrigger>
                   <SelectContent>
@@ -280,7 +285,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="register-password">كلمة المرور</Label>
+                <Label htmlFor="register-password" className="text-sm sm:text-base">كلمة المرور</Label>
                 <Input 
                   id="register-password" 
                   name="password"
@@ -288,6 +293,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
                   value={registerForm.password}
                   onChange={handleRegisterChange}
                   required 
+                  className="border-2 focus-visible:border-primary"
                 />
                 {registerErrors.password && (
                   <p className="text-destructive text-xs mt-1">{registerErrors.password}</p>
@@ -295,7 +301,7 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">تأكيد كلمة المرور</Label>
+                <Label htmlFor="confirmPassword" className="text-sm sm:text-base">تأكيد كلمة المرور</Label>
                 <Input 
                   id="confirmPassword" 
                   name="confirmPassword"
@@ -303,13 +309,14 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
                   value={registerForm.confirmPassword}
                   onChange={handleRegisterChange}
                   required 
+                  className="border-2 focus-visible:border-primary"
                 />
                 {registerErrors.confirmPassword && (
                   <p className="text-destructive text-xs mt-1">{registerErrors.confirmPassword}</p>
                 )}
               </div>
               
-              <Button type="submit" className="w-full">إنشاء حساب</Button>
+              <Button type="submit" className="w-full text-sm sm:text-base">إنشاء حساب</Button>
               
               <p className="text-sm text-center text-gray-500">
                 لديك حساب بالفعل؟{" "}

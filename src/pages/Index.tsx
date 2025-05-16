@@ -1,14 +1,15 @@
+
 /**
  * This file is for the Homepage
  * Displays the main landing page with search functionality and featured listings
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchBar from '@/components/SearchBar';
 import FeaturedListings from '@/components/FeaturedListings';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Home, MapPin, Heart, Search as SearchIcon } from 'lucide-react';
 import { useUserPreference } from '@/contexts/UserPreferenceContext';
@@ -17,6 +18,14 @@ import LandlordForm from '@/components/LandlordForm';
 
 const Index = () => {
   const { userType } = useUserPreference();
+  const { pathname, hash } = useLocation();
+  
+  // Effect to scroll to top when navigating to this page
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
   
   return (
     <div className="min-h-screen flex flex-col">
@@ -55,7 +64,7 @@ const Index = () => {
       </section>
       
       {/* Neighborhoods Section */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-white" id="neighborhoods">
         <div className="container-custom">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-8">
             المناطق الشعبية في صنعاء
@@ -80,7 +89,7 @@ const Index = () => {
       {(userType === 'landlord' || userType === 'agency') && <LandlordForm />}
       
       {/* How It Works */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50" id="how-it-works">
         <div className="container-custom">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12">
             كيف يعمل الموقع 
