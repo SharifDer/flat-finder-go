@@ -9,6 +9,7 @@ import { useUserPreference } from '@/contexts/UserPreferenceContext';
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { z } from "zod";
+import { Eye, EyeOff, Mail, Lock, User, Check } from "lucide-react";
 
 type PropertyAuthModalProps = {
   open: boolean;
@@ -58,6 +59,10 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
     password: "",
   });
 
+  // Password visibility toggle
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   // Form errors
   const [registerErrors, setRegisterErrors] = useState<Record<string, string>>({});
   const [loginErrors, setLoginErrors] = useState<Record<string, string>>({});
@@ -81,7 +86,6 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
   };
 
   const handleUserTypeChange = (value: string) => {
-    // Fix: Add a type assertion to make sure value is treated as a UserType
     setRegisterForm(prev => ({ 
       ...prev, 
       userType: value as 'renter' | 'landlord' | 'agency' | null 
@@ -93,7 +97,6 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
     
     try {
       loginSchema.parse(loginForm);
-      // This data would go to the backend in a real app 
       setIsLoggedIn(true);
       toast({
         title: "تم تسجيل الدخول بنجاح",
@@ -119,11 +122,8 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
     
     try {
       registerSchema.parse(registerForm);
-      // This data would go to the backend in a real app
       setIsLoggedIn(true);
-      // Fix: Convert the string to the proper UserType
       if (registerForm.userType) {
-        // Cast the string value to UserType
         const userTypeValue = registerForm.userType as 'renter' | 'landlord' | 'agency' | null;
         setUserType(userTypeValue);
       }
@@ -148,60 +148,94 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
   
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md max-w-[90%] p-4 sm:p-6">
+      <DialogContent className="sm:max-w-md max-w-[95%] p-4 sm:p-5 rounded-xl bg-white shadow-lg border-0">
         <DialogHeader>
-          <DialogTitle className="text-center text-lg sm:text-xl mb-2">
+          <DialogTitle className="text-center text-xl font-bold mb-2 text-primary">
             {activeTab === 'login' ? 'تسجيل الدخول' : 'إنشاء حساب جديد'}
           </DialogTitle>
           <p className="text-center text-gray-600 text-sm">
-            لتتمكن من حفظ معلومات عقارك ومتابعتها لاحقًا، يجب إنشاء حساب
+            {activeTab === 'login' 
+              ? 'أدخل بياناتك لتتمكن من الوصول إلى حسابك' 
+              : 'أنشئ حساب جديد لتتمكن من نشر عقاراتك'
+            }
           </p>
         </DialogHeader>
         
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-4">
-            <TabsTrigger value="login">تسجيل الدخول</TabsTrigger>
-            <TabsTrigger value="register">حساب جديد</TabsTrigger>
+            <TabsTrigger 
+              value="login" 
+              className="data-[state=active]:bg-primary data-[state=active]:text-white"
+            >
+              تسجيل الدخول
+            </TabsTrigger>
+            <TabsTrigger 
+              value="register"
+              className="data-[state=active]:bg-primary data-[state=active]:text-white"
+            >
+              حساب جديد
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="login">
-            <form onSubmit={handleLogin} className="space-y-4 pt-2">
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm sm:text-base">البريد الإلكتروني</Label>
-                <Input 
-                  id="email" 
-                  name="email"
-                  type="email" 
-                  placeholder="your@email.com" 
-                  value={loginForm.email}
-                  onChange={handleLoginChange}
-                  required 
-                  className="border-2 focus-visible:border-primary"
-                />
+            <form onSubmit={handleLogin} className="space-y-3">
+              <div className="space-y-1">
+                <Label htmlFor="email" className="text-sm font-medium">البريد الإلكتروني</Label>
+                <div className="relative">
+                  <Mail className="absolute right-3 top-3 h-4 w-4 text-gray-400" />
+                  <Input 
+                    id="email" 
+                    name="email"
+                    type="email" 
+                    dir="ltr"
+                    placeholder="your@email.com" 
+                    value={loginForm.email}
+                    onChange={handleLoginChange}
+                    required 
+                    className="pr-10 focus:border-primary"
+                  />
+                </div>
                 {loginErrors.email && (
                   <p className="text-destructive text-xs mt-1">{loginErrors.email}</p>
                 )}
               </div>
               
-              <div className="space-y-2">
-                <Label htmlFor="password" className="text-sm sm:text-base">كلمة المرور</Label>
-                <Input 
-                  id="password" 
-                  name="password"
-                  type="password" 
-                  value={loginForm.password}
-                  onChange={handleLoginChange}
-                  required 
-                  className="border-2 focus-visible:border-primary"
-                />
+              <div className="space-y-1">
+                <Label htmlFor="password" className="text-sm font-medium">كلمة المرور</Label>
+                <div className="relative">
+                  <Lock className="absolute right-3 top-3 h-4 w-4 text-gray-400" />
+                  <Input 
+                    id="password" 
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    dir="ltr"
+                    value={loginForm.password}
+                    onChange={handleLoginChange}
+                    required 
+                    className="pr-10 focus:border-primary"
+                  />
+                  <button 
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)} 
+                    className="absolute left-3 top-3 text-gray-400 hover:text-gray-600"
+                    tabIndex={-1}
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
                 {loginErrors.password && (
                   <p className="text-destructive text-xs mt-1">{loginErrors.password}</p>
                 )}
               </div>
               
-              <Button type="submit" className="w-full text-sm sm:text-base">تسجيل الدخول</Button>
+              <Button 
+                type="submit" 
+                className="w-full bg-primary hover:bg-primary/90 text-white mt-2"
+              >
+                تسجيل الدخول
+              </Button>
               
-              <p className="text-sm text-center text-gray-500">
+              <p className="text-sm text-center text-gray-500 pt-1">
                 ليس لديك حساب؟{" "}
                 <button 
                   type="button"
@@ -215,65 +249,73 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
           </TabsContent>
           
           <TabsContent value="register">
-            <form onSubmit={handleRegister} className="space-y-4 pt-2">
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm sm:text-base">اسم المستخدم</Label>
-                <Input 
-                  id="name" 
-                  name="name"
-                  placeholder="الاسم الكامل" 
-                  value={registerForm.name}
-                  onChange={handleRegisterChange}
-                  required 
-                  className="border-2 focus-visible:border-primary"
-                />
+            <form onSubmit={handleRegister} className="space-y-3">
+              <div className="space-y-1">
+                <Label htmlFor="name" className="text-sm font-medium">الاسم</Label>
+                <div className="relative">
+                  <User className="absolute right-3 top-3 h-4 w-4 text-gray-400" />
+                  <Input 
+                    id="name" 
+                    name="name"
+                    placeholder="الاسم الكامل" 
+                    value={registerForm.name}
+                    onChange={handleRegisterChange}
+                    required 
+                    className="pr-10 focus:border-primary"
+                  />
+                </div>
                 {registerErrors.name && (
                   <p className="text-destructive text-xs mt-1">{registerErrors.name}</p>
                 )}
               </div>
               
-              <div className="space-y-2">
-                <Label htmlFor="register-email" className="text-sm sm:text-base">البريد الإلكتروني</Label>
-                <Input 
-                  id="register-email" 
-                  name="email"
-                  type="email" 
-                  placeholder="your@email.com" 
-                  value={registerForm.email}
-                  onChange={handleRegisterChange}
-                  required 
-                  className="border-2 focus-visible:border-primary"
-                />
+              <div className="space-y-1">
+                <Label htmlFor="register-email" className="text-sm font-medium">البريد الإلكتروني</Label>
+                <div className="relative">
+                  <Mail className="absolute right-3 top-3 h-4 w-4 text-gray-400" />
+                  <Input 
+                    id="register-email" 
+                    name="email"
+                    type="email" 
+                    dir="ltr"
+                    placeholder="your@email.com" 
+                    value={registerForm.email}
+                    onChange={handleRegisterChange}
+                    required 
+                    className="pr-10 focus:border-primary"
+                  />
+                </div>
                 {registerErrors.email && (
                   <p className="text-destructive text-xs mt-1">{registerErrors.email}</p>
                 )}
               </div>
               
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-sm sm:text-base">رقم الهاتف</Label>
+              <div className="space-y-1">
+                <Label htmlFor="phone" className="text-sm font-medium">رقم الهاتف</Label>
                 <Input 
                   id="phone" 
                   name="phone"
                   type="tel"
-                  placeholder="777123456" 
+                  placeholder="777123456"
+                  dir="ltr"
                   value={registerForm.phone}
                   onChange={handleRegisterChange}
                   required 
-                  className="border-2 focus-visible:border-primary"
+                  className="focus:border-primary"
                 />
-                <p className="text-xs text-gray-500">يجب أن يبدأ بـ 7xx أو 01 أو 05 وطوله 9 أرقام</p>
+                <p className="text-xs text-gray-500">يبدأ بـ 7xx أو 01 أو 05 (طوله 9 أرقام)</p>
                 {registerErrors.phone && (
                   <p className="text-destructive text-xs mt-1">{registerErrors.phone}</p>
                 )}
               </div>
               
-              <div className="space-y-2">
-                <Label htmlFor="userType" className="text-sm sm:text-base">نوع المستخدم</Label>
+              <div className="space-y-1">
+                <Label htmlFor="userType" className="text-sm font-medium">نوع المستخدم</Label>
                 <Select 
                   value={registerForm.userType} 
                   onValueChange={handleUserTypeChange}
                 >
-                  <SelectTrigger className="border-2 focus-visible:border-primary">
+                  <SelectTrigger className="border-2 focus:border-primary">
                     <SelectValue placeholder="اختر نوع المستخدم" />
                   </SelectTrigger>
                   <SelectContent>
@@ -284,41 +326,70 @@ const PropertyAuthModal = ({ open, onOpenChange, onSuccess }: PropertyAuthModalP
                 </Select>
               </div>
               
-              <div className="space-y-2">
-                <Label htmlFor="register-password" className="text-sm sm:text-base">كلمة المرور</Label>
-                <Input 
-                  id="register-password" 
-                  name="password"
-                  type="password" 
-                  value={registerForm.password}
-                  onChange={handleRegisterChange}
-                  required 
-                  className="border-2 focus-visible:border-primary"
-                />
+              <div className="space-y-1">
+                <Label htmlFor="register-password" className="text-sm font-medium">كلمة المرور</Label>
+                <div className="relative">
+                  <Lock className="absolute right-3 top-3 h-4 w-4 text-gray-400" />
+                  <Input 
+                    id="register-password" 
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    dir="ltr"
+                    value={registerForm.password}
+                    onChange={handleRegisterChange}
+                    required 
+                    className="pr-10 focus:border-primary"
+                  />
+                  <button 
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute left-3 top-3 text-gray-400 hover:text-gray-600"
+                    tabIndex={-1}
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
                 {registerErrors.password && (
                   <p className="text-destructive text-xs mt-1">{registerErrors.password}</p>
                 )}
               </div>
               
-              <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="text-sm sm:text-base">تأكيد كلمة المرور</Label>
-                <Input 
-                  id="confirmPassword" 
-                  name="confirmPassword"
-                  type="password" 
-                  value={registerForm.confirmPassword}
-                  onChange={handleRegisterChange}
-                  required 
-                  className="border-2 focus-visible:border-primary"
-                />
+              <div className="space-y-1">
+                <Label htmlFor="confirmPassword" className="text-sm font-medium">تأكيد كلمة المرور</Label>
+                <div className="relative">
+                  <Lock className="absolute right-3 top-3 h-4 w-4 text-gray-400" />
+                  <Input 
+                    id="confirmPassword" 
+                    name="confirmPassword"
+                    type={showConfirmPassword ? "text" : "password"}
+                    dir="ltr"
+                    value={registerForm.confirmPassword}
+                    onChange={handleRegisterChange}
+                    required 
+                    className="pr-10 focus:border-primary"
+                  />
+                  <button 
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute left-3 top-3 text-gray-400 hover:text-gray-600"
+                    tabIndex={-1}
+                  >
+                    {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
                 {registerErrors.confirmPassword && (
                   <p className="text-destructive text-xs mt-1">{registerErrors.confirmPassword}</p>
                 )}
               </div>
               
-              <Button type="submit" className="w-full text-sm sm:text-base">إنشاء حساب</Button>
+              <Button 
+                type="submit" 
+                className="w-full bg-primary hover:bg-primary/90 text-white flex items-center justify-center gap-2 mt-2"
+              >
+                <Check className="h-4 w-4" /> إنشاء حساب
+              </Button>
               
-              <p className="text-sm text-center text-gray-500">
+              <p className="text-sm text-center text-gray-500 pt-1">
                 لديك حساب بالفعل؟{" "}
                 <button 
                   type="button"
