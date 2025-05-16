@@ -43,7 +43,9 @@ const ApartmentCard = ({ apartment }: ApartmentCardProps) => {
         <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
           <div><span className="font-medium">{apartment.bedrooms}</span> غرفة</div>
           <div><span className="font-medium">{apartment.bathrooms}</span> حمام</div>
-          <div><span className="font-medium">{apartment.area}</span> م²</div>
+          <div className={apartment.available ? "text-green-600 font-medium" : "text-red-600 font-medium"}>
+            {apartment.available ? 'متاحة' : 'تم التأجير'}
+          </div>
         </div>
         <Link to={`/apartment/${apartment.id}`}>
           <Button variant="outline" size="sm" className="w-full">

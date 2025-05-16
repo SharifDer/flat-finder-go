@@ -160,8 +160,8 @@ const ApartmentDetail = () => {
               <CardContent className="space-y-4">
                 <div>
                   <div className="font-medium">الحالة</div>
-                  <div className="text-green-600 font-medium">
-                    {apartment.available ? 'متاح الآن' : 'غير متاح'}
+                  <div className={apartment.available ? "text-green-600 font-medium" : "text-red-600 font-medium"}>
+                    {apartment.available ? 'متاح الآن' : 'تم التأجير'}
                   </div>
                 </div>
                 
@@ -185,7 +185,7 @@ const ApartmentDetail = () => {
             {/* Overview Section */}
             <div>
               <h2 className="text-xl font-bold mb-4">نظرة عامة</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
                 <div className="bg-blue-50 p-4 rounded-lg text-center">
                   <div className="text-gray-600 text-sm">غرف النوم</div>
                   <div className="font-bold text-lg">
@@ -197,45 +197,13 @@ const ApartmentDetail = () => {
                   <div className="font-bold text-lg">{apartment.bathrooms}</div>
                 </div>
                 <div className="bg-blue-50 p-4 rounded-lg text-center">
-                  <div className="text-gray-600 text-sm">المساحة</div>
-                  <div className="font-bold text-lg">{apartment.area} متر مربع</div>
-                </div>
-                <div className="bg-blue-50 p-4 rounded-lg text-center">
-                  <div className="text-gray-600 text-sm">متاح</div>
-                  <div className="font-bold text-lg">{apartment.available ? 'نعم' : 'لا'}</div>
+                  <div className="text-gray-600 text-sm">الحالة</div>
+                  <div className={`font-bold text-lg ${apartment.available ? "text-green-600" : "text-red-600"}`}>
+                    {apartment.available ? 'متاح' : 'مؤجر'}
+                  </div>
                 </div>
               </div>
               <p className="text-gray-700 leading-relaxed">{apartment.description}</p>
-            </div>
-            
-            <Separator />
-            
-            {/* Features Section */}
-            <div>
-              <h2 className="text-xl font-bold mb-4">مميزات العقار</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {apartment.features.map((feature, index) => (
-                  <div key={index} className="flex items-center">
-                    <div className="h-2 w-2 bg-primary rounded-full ml-2"></div>
-                    <span>{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <Separator />
-            
-            {/* Amenities Section */}
-            <div>
-              <h2 className="text-xl font-bold mb-4">مرافق المبنى</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {apartment.amenities.map((amenity, index) => (
-                  <div key={index} className="flex items-center">
-                    <div className="h-2 w-2 bg-primary rounded-full ml-2"></div>
-                    <span>{amenity}</span>
-                  </div>
-                ))}
-              </div>
             </div>
             
             <Separator />

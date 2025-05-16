@@ -4,24 +4,20 @@ export interface Apartment {
   title: string;
   description: string;
   price: number;
-  location: string;
+  location: string; // This represents 'address' in the schema
   images: string[];
-  bedrooms: number;
-  bathrooms: number;
-  area: number;
-  features: string[];
-  amenities: string[];
+  bedrooms: number; // This represents 'number_of_rooms' in the schema
+  bathrooms: number; // This represents 'number_of_bathrooms' in the schema
   contactName: string;
   contactEmail: string;
   contactPhone: string;
-  available: boolean;
+  available: boolean; // This represents 'status' in the schema
   dateAvailable: string;
+  type: string;
   petFriendly: boolean;
   furnished: boolean;
   parkingIncluded: boolean;
   utilitiesIncluded: boolean;
-  type: string; // Added type property
-  floor?: string;
 }
 
 export const apartments: Apartment[] = [
@@ -38,9 +34,6 @@ export const apartments: Apartment[] = [
     ],
     bedrooms: 2,
     bathrooms: 1,
-    area: 85,
-    features: ['أرضيات خشبية', 'إطلالة على المدينة', 'أجهزة من الفولاذ المقاوم للصدأ', 'غسالة أطباق', 'غسالة ملابس في الوحدة'],
-    amenities: ['مركز لياقة بدنية', 'تراس على السطح', 'حراسة على مدار 24 ساعة', 'استقبال الطرود'],
     contactName: 'محمد علي',
     contactEmail: 'mohammed@example.com',
     contactPhone: '777 123 456',
@@ -51,7 +44,6 @@ export const apartments: Apartment[] = [
     parkingIncluded: true,
     utilitiesIncluded: false,
     type: 'شقة',
-    floor: 'الأول',
   },
   {
     id: '2',
@@ -66,9 +58,6 @@ export const apartments: Apartment[] = [
     ],
     bedrooms: 0,
     bathrooms: 1,
-    area: 45,
-    features: ['تخزين مدمج', 'مطبخ محدث', 'إضاءة غائرة', 'تكييف هواء'],
-    amenities: ['حديقة مشتركة', 'غسالات في المبنى', 'مخزن للدراجات', 'إنترنت عالي السرعة'],
     contactName: 'سارة الأحمد',
     contactEmail: 'sara@example.com',
     contactPhone: '734 987 654',
@@ -79,7 +68,6 @@ export const apartments: Apartment[] = [
     parkingIncluded: false,
     utilitiesIncluded: true,
     type: 'استديو',
-    floor: 'الأرضي',
   },
   {
     id: '3',
@@ -94,9 +82,6 @@ export const apartments: Apartment[] = [
     ],
     bedrooms: 3,
     bathrooms: 2,
-    area: 150,
-    features: ['أسطح رخامية', 'خزائن ملابس', 'نوافذ من الأرض إلى السقف', 'شرفة خاصة', 'ميزات المنزل الذكي'],
-    amenities: ['حمام سباحة', 'كونسيرج', 'موقف سيارات تحت الأرض', 'مركز أعمال', 'منطقة للحيوانات الأليفة'],
     contactName: 'أحمد الهاشمي',
     contactEmail: 'ahmed@example.com',
     contactPhone: '771 456 789',
@@ -107,7 +92,6 @@ export const apartments: Apartment[] = [
     parkingIncluded: true,
     utilitiesIncluded: false,
     type: 'شقة',
-    floor: 'الثالث',
   },
   {
     id: '4',
@@ -122,9 +106,6 @@ export const apartments: Apartment[] = [
     ],
     bedrooms: 1,
     bathrooms: 1,
-    area: 65,
-    features: ['مجددة حديثًا', 'وصول للحديقة', 'مطبخ محدث', 'مساحة تخزين وفيرة'],
-    amenities: ['حديقة مشتركة', 'مرافق غسيل', 'مخزن للدراجات', 'سماح بالحيوانات الأليفة'],
     contactName: 'ليلى القاضي',
     contactEmail: 'laila@example.com',
     contactPhone: '713 234 567',
@@ -135,7 +116,6 @@ export const apartments: Apartment[] = [
     parkingIncluded: false,
     utilitiesIncluded: true,
     type: 'شقة',
-    floor: 'الأول',
   },
   {
     id: '5',
@@ -150,20 +130,16 @@ export const apartments: Apartment[] = [
     ],
     bedrooms: 2,
     bathrooms: 1.5,
-    area: 110,
-    features: ['طابقين', 'مدخل خاص', 'مخطط مفتوح', 'فناء خاص', 'تشطيبات عصرية'],
-    amenities: ['موقف سيارات مخصص', 'وحدة تخزين', 'قريب من التسوق', 'وسائل نقل عام قريبة'],
     contactName: 'خالد المقطري',
     contactEmail: 'khaled@example.com',
     contactPhone: '735 876 543',
-    available: true,
+    available: false,
     dateAvailable: '01-06-2024',
     petFriendly: true,
     furnished: false,
     parkingIncluded: true,
     utilitiesIncluded: false,
     type: 'منزل',
-    floor: 'الأرضي والأول',
   },
   {
     id: '6',
@@ -178,20 +154,16 @@ export const apartments: Apartment[] = [
     ],
     bedrooms: 0,
     bathrooms: 1,
-    area: 40,
-    features: ['مفروش بالكامل', 'أجهزة حديثة', 'جاهز للكابل والواي-فاي', 'تخطيط فعال'],
-    amenities: ['صالة دراسة', 'غسيل في الموقع', 'مبنى آمن', 'مخزن للدراجات'],
     contactName: 'نورا السقاف',
     contactEmail: 'noura@example.com',
     contactPhone: '711 345 678',
-    available: true,
+    available: false,
     dateAvailable: '01-05-2024',
     petFriendly: false,
     furnished: true,
     parkingIncluded: false,
     utilitiesIncluded: true,
     type: 'استديو',
-    floor: 'الثاني',
   }
 ];
 

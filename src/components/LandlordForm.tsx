@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
 import { useUserPreference } from '@/contexts/UserPreferenceContext';
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +13,7 @@ const LandlordForm = () => {
   const { isLoggedIn, userType } = useUserPreference();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [isAvailable, setIsAvailable] = useState(true);
   
   // Set the title based on the user type
   const isAgency = userType === 'agency';
@@ -66,6 +68,20 @@ const LandlordForm = () => {
                 <Label htmlFor="rooms">عدد الغرف</Label>
                 <Input id="rooms" type="number" placeholder="مثال: 3" required />
               </div>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="isAvailable">متاح للإيجار</Label>
+                <Switch 
+                  id="isAvailable" 
+                  checked={isAvailable} 
+                  onCheckedChange={setIsAvailable} 
+                />
+              </div>
+              <p className="text-sm text-gray-500">
+                {isAvailable ? 'سيتم عرض العقار كمتاح للإيجار' : 'سيتم عرض العقار كمؤجر بالفعل'}
+              </p>
             </div>
             
             <div className="space-y-3">
